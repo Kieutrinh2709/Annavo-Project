@@ -3,10 +3,32 @@
     assign enable_border_bottom = block.settings.enable_border_bottom
     assign color_border = block.settings.color_border
     assign picker_type = block.settings.picker_type
+
+    assign has_size_option = false
+    for option in product.options_with_values
+        if option.name == 'Size'
+            assign has_size_option = true
+        endif
+    endfor
 -%}
 <div class="productView-options{% if enable_border_top %} has-border-top{% endif %}{% if enable_border_bottom %} has-border-bottom{% endif %}" style="--color-border: {{ color_border }}" data-lang="{{ request.locale.iso_code | downcase }}" data-default-lang="{{ localization.country.iso_code | downcase }}">
     {%- if variantCount > 0  and product.has_only_default_variant != true -%}
-        <div class="productView-variants halo-productOptions" id="product-option-{{ product.id }}"  data-type="{{ picker_type }}">
+        <div class="productView-variants halo-productOptions" id="product-option-{{ product.id }}"  data-type="{{ picker_type }}" dung="{{has_size_option}}">
+            {%- if has_size_option -%}
+                <div class="size-radio-wrapper">
+                    <div class="radio-item">
+                        <input type="radio" id="make-to-order" name="size-option">
+                        <label class="label" for="make-to-order">Make to order</label>
+                        <span class="sub-label">Price upon request</span>
+                        <p class="infor">Crafted specifically for you. Allow 10-14 days for production before shipping. This option ensures better sizing flexibility and customization. Non-refundable after order confirmation.</p>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="in-stock" name="size-option" checked>
+                        <label class="label" for="in-stock">In stock</label>
+                        <span class="sub-label">$132.30</span>
+                    </div>
+                </div>
+            {%- endif -%}
             {%- if picker_type == 'button' -%}
                 {%- assign product_swatch_option = settings.swatch | downcase -%}
                 <variant-radios class="no-js-hidden product-option has-default" data-product="{{ product.id }}" data-section="{{ section.id }}" data-url="{{ product.url }}">
@@ -139,6 +161,37 @@
                                 {%- endunless -%}
                             {%- endfor -%}
                         </fieldset>
+                        {%- if option_name == 'size' -%}
+                            <div class="size-properties-wrapper">
+                                <span class="form__label">Let us know your measurements (bust, waist, hips, and height), and we’ll make it just right for you.</span>
+                                <div class="size-properties-options">
+                                    <div class="size-properties-item">
+                                        <div class="product-form__input clearfix line-item-property__field">
+                                            <label for="bust" class="form-label form__label">bust</label>
+                                            <input id="bust" type="text" name="properties[bust]" class="form__input form-input" placeholder="e.g. 84 cm">
+                                        </div>
+                                    </div>
+                                    <div class="size-properties-item">
+                                        <div class="product-form__input clearfix line-item-property__field">
+                                            <label for="waist" class="form-label form__label">waist</label>
+                                            <input id="waist" type="text" name="properties[waist]" class="form__input form-input" placeholder="e.g. 66 cm">
+                                        </div>
+                                    </div>
+                                    <div class="size-properties-item">
+                                        <div class="product-form__input clearfix line-item-property__field">
+                                            <label for="hips" class="form-label form__label">hips</label>
+                                            <input id="hips" type="text" name="properties[hips]" class="form__input form-input" placeholder="e.g. 92 cm">
+                                        </div>
+                                    </div>
+                                    <div class="size-properties-item">
+                                        <div class="product-form__input clearfix line-item-property__field">
+                                            <label for="height" class="form-label form__label">height</label>
+                                            <input id="height" type="text" name="properties[height]" class="form__input form-input" placeholder="e.g. 165 cm">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {%- endif -%}
                     {%- endfor -%}
                     <script type="application/json">
                         {{ product.variants | json }}

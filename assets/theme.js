@@ -4719,10 +4719,10 @@
                     var sliderNav2 = $scope.find('.productView-nav.productView-nav-gallery'),
                         length = sliderNav2.data('media-count'),
                         oneItems = sliderNav2.data('1-item-mobi'),
-                        show = 3,
+                        show = 4,
                         rows = 1;
 
-                    if (length < 3) {
+                    if (length < 4) {
                       show = length;
                     }
 
