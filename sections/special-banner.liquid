@@ -107,7 +107,7 @@
                                         </div>
                                     {%- endif -%}
                                     {%- if heading != blank or desc != blank or btn_txt != blank -%}
-                                        <div class="special-banner__content p-absolute left-0 right-0 text-{{block.settings.text_align}}{% if content_align == 'top' %} special-banner__content_top top-0{% elsif content_align == 'center' %} special-banner__content_center middle-y{% else %} special-banner__content_bottom bottom-0{% endif %}" style="--text-color: {{ block.settings.text_color }}">
+                                        <div class="special-banner__content p-absolute left-0 right-0 text-{{block.settings.text_align}}{% if content_align == 'top' %} special-banner__content_top top-0{% elsif content_align == 'center' %} special-banner__content_center middle-y{% else %} special-banner__content_bottom bottom-0{% endif %}" style="--text-color: {{ block.settings.text_color }}">                                        
                                             {%- if heading != blank -%}
                                                 <h3 class="heading m-zero mb-15" style="--font-size: {{block.settings.fontsize_heading | append: 'px'}};--font-size-mb: {{block.settings.fontsize_heading_mb | append: 'px'}};--line-height: {{block.settings.fontsize_heading | plus: 8 | append: 'px'}}; --line-height-mb: {{block.settings.fontsize_heading_mb | plus: 8 | append: 'px'}}">{{heading}}</h3>
                                             {%- endif -%}
@@ -435,12 +435,15 @@
                                 endif
 
                                 assign product_counter_number = block.settings.product_counter_number
+                                assign product_column = block.settings.product_column
                             -%}
-                            <h3 class="title center" style="--fontsize_title:{{ fontsize_title }}px;--fontsize_title_mb:{{ fontsize_title_mb }}px;--pd_top_title:{{ pd_top_title }}px;--mg_bottom_title:{{ mg_bottom_title }}px;--color_title:{{ color_title }};">
-                                <span class="text">{{ block.settings.title }}</span>
-                            </h3>
+                            {%- if block.settings.title != blank -%}
+                                <h3 class="title center" style="--fontsize_title:{{ fontsize_title }}px;--fontsize_title_mb:{{ fontsize_title_mb }}px;--pd_top_title:{{ pd_top_title }}px;--mg_bottom_title:{{ mg_bottom_title }}px;--color_title:{{ color_title }};">
+                                    <span class="text">{{ block.settings.title }}</span>
+                                </h3>
+                            {%- endif -%}
                             <div class="special-banner__product" data-product-block data-limit="{{ limit }}" data-layout="{{ layout }}" sectionId="{{ section.id }}" data-collection="{{ collection }}" data-image-ratio="{{ image_ratio }}" data-swipe="false" hasCountdown="true"{% if block.settings.enable_custom_color %} style="--product-title-color : {{ block.settings.product_title_color }};--product-title-color-hover : {{ block.settings.product_title_color_hover }};--product-vendor-color : {{ block.settings.product_vendor_color }};--product-price-color : {{ block.settings.product_price_color }};--product-sale-price-color : {{ block.settings.product_price_sale_color }};--product-compare-price-color : {{ block.settings.product_price_compare_color }};"{% endif %}>
-                                <div class="special-banner__products--{{ layout }} products-{{ product_layout }}{% if product_layout == 'carousel' %}{% if product_counter_number %} enable_counter_number{% endif %}{% endif %}" data-item-to-show="1" data-item-dots="false" data-item-dots-mb="true" data-item-arrows="true" data-item-arrows-mb="false">
+                                <div class="special-banner__products--{{ layout }} column-{{ product_column }} products-{{ product_layout }}{% if product_layout == 'carousel' %}{% if product_counter_number %} enable_counter_number{% endif %}{% endif %}" data-item-to-show="1" data-item-dots="false" data-item-dots-mb="true" data-item-arrows="true" data-item-arrows-mb="false">
                                     {%- if collection.products[0] != nil -%}
                                         {%- liquid 
                                             assign product_limit = 1
@@ -1347,6 +1350,23 @@
                             {
                                 "value": "slider",
                                 "label": "t:sections.product_block.settings.product_block_layout.option2"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "select",
+                        "id": "product_column",
+                        "label": "Column",
+                        "default": "2",
+                        "visible_if": "{{ block.settings.layout == 'grid' }}",
+                        "options": [
+                            {
+                                "value": "1",
+                                "label": "1"
+                            },
+                            {
+                                "value": "2",
+                                "label": "2"
                             }
                         ]
                     },

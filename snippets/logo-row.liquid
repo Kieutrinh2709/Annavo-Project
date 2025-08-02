@@ -2,6 +2,7 @@
   assign type = block.settings.type
   assign background = block.settings.background
   assign background_gradient = block.settings.background_gradient
+  assign logo_width = block.settings.logo_width
 %}
 <style>
     .footer__logo-row {background: {% if background_gradient != blank %}{{ background_gradient }}{% else %}{{ background }}{% endif %}}
@@ -18,7 +19,7 @@
 </style>
 <div class="footer__logo-row">
   <div class="container container-full">
-    <div class="footer-block__logo"{%- if type == 'text' -%} style="--text-color: {{ block.settings.color }};--text-font-size: {{ block.settings.font_size }}px;"{%- endif -%}>
+    <div class="footer-block__logo"{%- if type == 'text' -%} style="--text-color: {{ block.settings.color }};--text-font-size: {{ block.settings.font_size }}px;"{%- else -%}style="--max-width:{{ logo_width | append: 'px' }}"{%- endif -%}>
         {%- if type == 'image' -%}
             {% if block.settings.image != blank %}
             <img class="logo" src="{{ block.settings.image | img_url: "master" }}" alt="{{ block.settings.image.alt | default: shop.name | escape }}"/>

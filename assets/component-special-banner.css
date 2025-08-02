@@ -532,6 +532,7 @@
         flex-direction: row;
         flex-wrap: wrap;
         grid-gap: 0;
+        align-items: center;
     }
     
     .special-banner__item {
@@ -550,11 +551,11 @@
     .special-banner__product {
         height: 100%;
         position: relative;
-        padding-bottom: 30px;
+        padding: 20px;
     }
     
     .special-banner__products--grid {
-        width: 75%;
+        width: 100%;
         margin: 0 auto;
         transition: .4s transform ease;
         padding: 0 30px 30px;
@@ -620,25 +621,34 @@
         padding-top: var(--p-top);
         padding-bottom: var(--p-bottom);
     }
-    
-    .special-banner__item--product {
-        padding-top: 50px;
+    .special-banner__wrapper {
+        align-items: flex-start;
+    }
+    .special-banner__product{
+        padding: 0 7px 0 0;
     }
     
     .special-banner__item--product .title {
         margin: var(--pd_top_title) 0 var(--mg_bottom_title) 0;
     }
-    
-    .special-banner__product {
-        padding: 0 30px;
-    }
-    
-    .special-banner__products--grid {
-        width: 550px;
+      
+    .special-banner__products--grid.column-2 {
         max-width: 100%;
-        padding: 0 75px 40px;
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0;
     }
-    .special-banner__products--grid .product + .product {
+    .special-banner__products--grid.column-2 .product{
+        width: 100%;
+    }
+    .special-banner__products--grid.column-2 .product{
+        padding: 0;
+    }
+    .special-banner__products--grid.column-1 .product{
+        margin-top: 0;
+    }
+    .special-banner__products--grid.column-1 .product + .product {
         margin-top: 50px
     }
     .special-banner__products--slider {
@@ -667,7 +677,18 @@
 }
 @media (min-width: 1440px) {
     .special-banner__content {
-        padding: 100px 60px;
+        padding: 40px;
+        width: 46%;
+    }
+    .special-banner__content.left-0.special-banner__content_top:before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(180deg, #F5FCF6 0%, #DFE4E0 100%);
+        filter: blur(120px);
     }
     .special-banner__item--collection_banner {
         padding: 30px;

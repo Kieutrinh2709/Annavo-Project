@@ -34,7 +34,7 @@
 
 .product-card-layout-07 .product-item .card-product__group {
     bottom: 15px;
-    top: unset;
+    top: 20px;
     visibility: visible;
     opacity: 1;
 }
@@ -55,7 +55,7 @@
 }
 
 .product-card-layout-07 .product-item .card-product__group.group-right {
-    right: 15px;
+    right: 20px;
 }
 
 .product-card-layout-07 .product-item .card-product__group.group-left {
@@ -205,7 +205,7 @@
     }
 
     .product-card-layout-07 .card:hover .card-product__group.group-right:not(.wrapper-item-size) {
-        transform: translateY(-70px);
+        transform: translateY(0);
     }
 
     .product-card-layout-07 .card:has(.wrapper-item-size):hover .card-product__group.group-right:not(.wrapper-item-size) {

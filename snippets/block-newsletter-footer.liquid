@@ -14,17 +14,17 @@
             <div class="field">
                 <label class="field__label hiddenLabels" for="NewsletterForm--{{ section.id }}">{{ 'newsletter.label' | t }}</label>
                 <input id="NewsletterForm--{{ section.id }}" type="email" name="contact[email]" class="field__input form-input-placeholder" value="{{ form.email }}" aria-required="true" autocorrect="off" autocapitalize="off" autocomplete="email"{% if form.errors %} autofocus aria-invalid="true" aria-describedby="ContactFooter-error"{% elsif form.posted_successfully? %} aria-describedby="ContactFooter-success"{% endif %} placeholder="{{ input_text }}" required="required">
+                {%- if block.settings.enable_deep_button_border -%}
+                <div class="submit-button-wrapper">
+                {%- endif -%} 
+                <button type="submit" {% if check_text != blank %}disabled{% endif %} class="button newsletter-form__button" name="commit" id="Subscribe--{{ section.id }}" aria-label="{{ 'newsletter.button_label' | t }}">{% if settings.enable_button_1_border_outside %}<span>{% endif %}{{ button_text }}{% if settings.enable_button_1_border_outside %}</span>{% endif %}</button>   
+                {% if hidden_input_field %}
+                    <div class="button-overlay"></div>
+                {% endif %}
+                {%- if block.settings.enable_deep_button_border -%}
+                </div>
+                {%- endif -%}
             </div>
-            {%- if block.settings.enable_deep_button_border -%}
-            <div class="submit-button-wrapper">
-            {%- endif -%} 
-            <button type="submit" {% if check_text != blank %}disabled{% endif %} class="button newsletter-form__button" name="commit" id="Subscribe--{{ section.id }}" aria-label="{{ 'newsletter.button_label' | t }}">{% if settings.enable_button_1_border_outside %}<span>{% endif %}{{ button_text }}{% if settings.enable_button_1_border_outside %}</span>{% endif %}</button>   
-            {% if hidden_input_field %}
-                <div class="button-overlay"></div>
-            {% endif %}
-            {%- if block.settings.enable_deep_button_border -%}
-            </div>
-            {%- endif -%}
         </div>      
         {%- if check_text != blank -%}
         <div class="form--check">
@@ -148,7 +148,8 @@
         assign check_text_fontsize_mb = block.settings.check_text_fontsize | minus: 2 | append: 'px'
         assign check_input_color = block.settings.check_input_color
     -%}
-    .footer-block__newsletter .field__input {color: {{ input_color }};background-color: {{ input_color_bg }};border: 1px solid {{ input_color_border }};font-size: var(--footer-link-font-size)}
+    .footer-block__newsletter .field{border: 1px solid {{ input_color_border }};}
+    .footer-block__newsletter .field__input {color: {{ input_color }};background-color: {{ input_color_bg }};border: none;font-size: var(--footer-link-font-size)}
     .footer-block__newsletter .field__input::-webkit-input-placeholder {color: {{ input_color }};font-size: var(--footer-link-font-size)}
     .footer-block__newsletter .field__input:-ms-input-placeholder {color: {{ input_color }};font-size: var(--footer-link-font-size)}
     .footer-block__newsletter .field__input::placeholder {color: {{ input_color }};font-size: var(--footer-link-font-size)}

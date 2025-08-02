@@ -184,6 +184,17 @@
           "visible_if": "{{ block.settings.type == 'image' }}"
         },
         {
+          "type": "range",
+          "id": "logo_width",
+          "label": "Width",
+          "min": 100,
+          "max": 800,
+          "step": 10,
+          "unit": "t:settings_schema.typography.settings.font_size.unit",
+          "default": 200,
+          "visible_if": "{{ block.settings.type == 'image' }}"
+        },
+        {
           "type": "inline_richtext",
           "id": "text",
           "label": "t:settings_schema.typography.settings.typography.text",
@@ -646,7 +657,7 @@
           "content": "t:settings_schema.typography.settings.typography.button"
         },
         {
-          "type": "text",
+          "type": "textarea",
           "id": "button_text",
           "label": "t:sections.image-banner.blocks.image.settings.content.label__16",
           "default": "Submit"
@@ -656,8 +667,8 @@
           "id": "button_width",
           "label": "t:sections.mobile_menu.settings.general.label__5",
           "default": 150,
-          "min": 100,
-          "max": 600,
+          "min": 5,
+          "max": 500,
           "step": 5,
           "unit": "t:sections.layout.mg_desktop.unit"
         },

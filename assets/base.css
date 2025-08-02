@@ -3379,9 +3379,7 @@ summary::-webkit-details-marker {
 
     .slideshow .adaptive_height img{
         object-fit: cover;
-        filter: brightness(0.6);
     }
-
     .slick-dots li.slick-active button, .slider-dots li.active button {
         background: var(--dots-color-active);
         border-color: var(--dots-border-color-active);
