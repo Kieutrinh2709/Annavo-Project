@@ -354,6 +354,7 @@
     width: var(--button-width);
     min-width: var(--button-width);
     margin: 0;
+    padding: 0;
 }
 
 .btn_1_br_outside .footer-block__newsletter .footer-block__newsletter-form .newsletter-form__button {
@@ -676,7 +677,10 @@ footer details[open] summary~* {
 }
 
 .footer-block__logo .logo{
+    max-width: var(--max-width);
     width: 100%;
+    height: auto;
+    margin: 0 auto;
 }
 
 @keyframes animateLocalization {
@@ -1094,11 +1098,6 @@ footer details[open] summary~* {
 @media (min-width: 1200px) and (max-width: 1399px) {
     .column-5 .footer-block__newsletter .footer-block__newsletter-form:not(.hidden-input) .newsletter-form__field-wrapper {
         display: block;
-    }
-
-    .column-5 .footer-block__newsletter .footer-block__newsletter-form:not(.hidden-input) .newsletter-form__button {
-        width: 100%;
-        margin-top: 15px;
     }
 
     .btn_1_br_outside .footer-1 .column-5 .footer-block__newsletter .newsletter-form__field-wrapper {

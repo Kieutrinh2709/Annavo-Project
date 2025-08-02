@@ -678,7 +678,7 @@
     }
 
     .scrolled-past-header .header-logo .header__heading-logo {
-        width: var(--logo_width_sticky);
+        width: var(--logo_width);
         max-width: var(--logo_width);
     }
     
@@ -712,8 +712,10 @@
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
-        transform: translateY(0);
-        animation: animateMenuOpen var(--duration-default) ease;
+        max-width: var(--container_size);
+        width: 100%;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .site-nav-banner .menu-dropdown__product .card:hover{
@@ -824,8 +826,7 @@
 
     .megamenu_style_3 .site-nav-list .image{
         display: block;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        width: 100%;
     }
     
     .megamenu_style_4 .menu-dropdown__column{

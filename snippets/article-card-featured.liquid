@@ -29,14 +29,16 @@
     <div class="article-card__info text-{{ text_align }}">
         {%- if block_item_style == 'style_2' -%}
             <div class="article-wrapper">
-                <div class="article-card__author{% if enable_blog_button %} enable_button{% endif %}" style="--margin-bottom: {{ margin_bottom_info | append: 'px' }}">
-                    {%- if blog_show_author -%}
-                        <span class="article__author"><span class="text_by">{{ text_by }}</span>{{article.author}}</span>
-                    {%- endif -%}
-                    {%- if blog_show_date -%}
-                        <span class="article__date"><span class="text_on">{{ text_on }}</span>{{- article.published_at | date: "%b %d, %Y" -}}</span>
-                    {%- endif -%}
-                </div>
+                {%- if blog_show_author or blog_show_date -%}
+                    <div class="article-card__author{% if enable_blog_button %} enable_button{% endif %}" style="--margin-bottom: {{ margin_bottom_info | append: 'px' }}">
+                        {%- if blog_show_author -%}
+                            <span class="article__author"><span class="text_by">{{ text_by }}</span>{{article.author}}</span>
+                        {%- endif -%}
+                        {%- if blog_show_date -%}
+                            <span class="article__date"><span class="text_on">{{ text_on }}</span>{{- article.published_at | date: "%b %d, %Y" -}}</span>
+                        {%- endif -%}
+                    </div>
+                {%- endif -%}
                 {%- if show_more_pos == 'right_title' -%}
                     <div class="article-card-header d-flex flex-jc-between flex-align-start gap-col-30">
                         <h3 class="article-card__title" style="--margin-bottom: {{ margin_bottom_title | append: 'px' }}"><a class="link-effect p-relative" href="{{ article.url }}"><span class="text">{{ article.title }}</span></a></h3>
@@ -55,14 +57,16 @@
             {%- else -%}
                 <h3 class="article-card__title" style="--margin-bottom: {{ margin_bottom_title | append: 'px' }}"><a class="link-effect p-relative d-inline-block" href="{{ article.url }}"><span class="text">{{ article.title }}</span></a></h3>
             {%- endif -%}
-            <div class="article-card__author{% if enable_blog_button %} enable_button{% endif %}" style="--margin-bottom: {{ margin_bottom_info | append: 'px' }}">
-                {%- if blog_show_author -%}
-                    <span class="article__author"><span class="text_by">{{ text_by }}</span>{{article.author}}</span>
-                {%- endif -%}
-                {%- if blog_show_date -%}
-                    <span class="article__date"><span class="text_on">{{ text_on }}</span>{{- article.published_at | date: "%b %d, %Y" -}}</span>
-                {%- endif -%}
-            </div>
+            {%- if blog_show_author or blog_show_date -%}
+                <div class="article-card__author{% if enable_blog_button %} enable_button{% endif %}" style="--margin-bottom: {{ margin_bottom_info | append: 'px' }}">
+                    {%- if blog_show_author -%}
+                        <span class="article__author"><span class="text_by">{{ text_by }}</span>{{article.author}}</span>
+                    {%- endif -%}
+                    {%- if blog_show_date -%}
+                        <span class="article__date"><span class="text_on">{{ text_on }}</span>{{- article.published_at | date: "%b %d, %Y" -}}</span>
+                    {%- endif -%}
+                </div>
+            {%- endif -%}
         {%- endif -%}
         {%- if blog_show_des -%}
             <div class="article-card__des" style="--margin-bottom: {{ margin_bottom_des | append: 'px' }}">{{ article.excerpt_or_content | strip_html | truncatewords: limit_content_des }}</div>

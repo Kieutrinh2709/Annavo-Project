@@ -59,7 +59,7 @@
     .footer-6 .footer-block__bottom .footer-block__newsletter .footer-block__newsletter-form .field{width:245px}
     .footer-6 .footer-block__bottom .footer-block__newsletter .footer-block__newsletter-form .newsletter-form__button{width:120px}
    }
-   @media (min-width: 1200px) and (max-width: 1399px){.column-5 .footer-block__newsletter .footer-block__newsletter-form:not(.hidden-input) .newsletter-form__button{width:100%;margin-top:15px}.footer-7 .column-5 .footer-block__newsletter .newsletter-form__field-wrapper{display:flex}.footer-7 .column-5 .footer-block__newsletter .footer-block__newsletter-form .newsletter-form__button{width:40px;margin-top:0}}
+   @media (min-width: 1200px) and (max-width: 1399px){.footer-7 .column-5 .footer-block__newsletter .newsletter-form__field-wrapper{display:flex}.footer-7 .column-5 .footer-block__newsletter .footer-block__newsletter-form .newsletter-form__button{width:40px;margin-top:0}}
    @media (min-width: 768px) and (max-width: 1200px) {.footer-7 .footer-block__item.footer-block__newsletter{text-align:left}.column-5 .footer-block__item.footer-block__newsletter{width:100%;margin-top:40px}}
    @media (min-width: 1920px){.footer-block__top .footer-block__newsletter{width: calc(100% - 460px)}}
    @media (max-width: 1199px) and (min-width: 992px) {.column-6 .footer-block__newsletter{width:100%;text-align:center;margin-bottom:40px;margin-top:20px}}
@@ -76,11 +76,8 @@
       <img data-srcset="{{ logo | img_url: '420x' }}" class="lazyload" alt="{{ logo.alt | default: shop.name | escape }}" width="{{ logo.width }}" height="{{ logo_height }}">
     </div>
   {%- endif -%}
-  {%- if show_social and swap_social_position == true -%}
-    {% render 'footer-social', block: block, social_is_nested: true %}
-  {%- endif -%}
   {%- if show_newsletter -%}
-    <div{% if show_social and swap_social_position %} {% if settings.enable_button_1_border_outside %}style="margin-top: 27px"{% else %}style="margin-top: 32px"{% endif %}{% endif %}>
+    <div>
       {%- if subtext_before_heading -%}
         <div class="footer-block__subheading rte">{{ block.settings.subtext | default: ' ' }}
           {%- if block.settings.enable_arrow -%}
@@ -91,11 +88,14 @@
       {%- if heading != blank -%}
         <h2 class="footer-block__heading" data-toggle-column-footer>{{- heading | escape -}}</h2>
       {%- endif -%}
+      {%- if show_social and swap_social_position == true -%}
+        {% render 'footer-social', block: block, social_is_nested: true %}
+      {%- endif -%}
       <div class="item clearfix">
+        {% render 'block-newsletter-footer', block: block %}
         {%- unless subtext_before_heading -%}
           <div class="footer-block__subheading rte">{{ subtext | default: ' ' }}</div>
-        {%- endunless -%}
-        {% render 'block-newsletter-footer', block: block %}
+        {%- endunless -%}     
       </div>
     </div>
   {%- endif -%}

@@ -104,7 +104,7 @@
     .section-block-{{section.id}}  .halo-row-placeholder {display: flex;}
     {%- if enable_blog_button -%}
         .section-block-{{section.id}} .article-card__footer {text-decoration: unset}
-        .section-block-{{section.id}} .article-card__footer a.button {color: {{ color_button_item }};background: {{ color_button_item_bg }};border: 1px solid {{ color_button_item_border }};font-weight: var(--btn-1-font-weight);text-transform: var(--btn-1-text-transform);width: 162px}
+        .section-block-{{section.id}} .article-card__footer a.button {color: {{ color_button_item }};background: {{ color_button_item_bg }};border: 1px solid {{ color_button_item_border }};font-weight: var(--btn-1-font-weight);text-transform: var(--btn-1-text-transform);width: 162px;margin-left: 0;padding:0;text-align: left;font-size: 16px;}
         .btn_1_br_outside .section-block-{{section.id}} .article-card__footer a.button:after {border: 1px solid {{ color_button_item_border }}}
         .section-block-{{section.id}} .article-card__footer a.button:hover {color: {{ color_button_item_hover }};background: {{ color_button_item_bg_hover }};border: 1px solid {{ color_button_item_border_hover }}}
         .btn_1_br_outside .section-block-{{section.id}} .article-card__footer a.button:hover:after {border: 1px solid {{ color_button_item_border_hover }}}
@@ -117,7 +117,7 @@
         {%- endunless -%}
 
         .section-block-{{section.id}} .article-card__author .article__date {order: -1;margin-right: 4px}
-        .section-block-{{section.id}} .article-card__info {padding: 22px 45px 28px}
+        .section-block-{{section.id}} .article-card__info {padding: 16px 0 16px}
         .article-card__link-right {min-width: unset;display: inline-block;width: auto;margin: 0}
     {%- endif -%}
     .section-block-{{section.id}} .article-card__title a span{background-image: linear-gradient(currentColor, currentColor);background-position: 0 90%;background-repeat: no-repeat;background-size: 0 1px;transition: background-size .5s}
@@ -586,6 +586,10 @@
         {
             "value": "3",
             "label": "3"
+        },
+        {
+            "value": "4",
+            "label": "4"
         }],
         "default": "3"
     },

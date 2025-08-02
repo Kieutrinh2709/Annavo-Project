@@ -1,0 +1,4 @@
+[environments.env1]
+theme = "153016828162"
+store = "kieutrinh-demo"
+theme-editor-sync = true
