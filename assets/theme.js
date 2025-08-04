@@ -4506,6 +4506,7 @@
             halo.productCustomCursor($scope);
             halo.productVideoGallery($scope);
             halo.initVariantImageGroup($scope, window.variant_image_group);
+            halo.initMakeToOrder($scope);
         },
 
         initQuickView: function(){
@@ -4654,7 +4655,7 @@
 
         productImageGallery: function($scope) {
             var sliderNav = $scope.find('.productView-nav'),
-                sliderFor = $scope.find('.productView-for:not(".mobile")'),
+                sliderFor = $scope.find('.productView-for:not(.mobile)'),
                 sliderForMobile = $scope.find('.productView-for.mobile');
 
             if(!sliderFor.hasClass('slick-initialized') && !sliderNav.hasClass('slick-initialized')) {
@@ -4913,6 +4914,39 @@
                         });
                     }
                 } else if($scope.hasClass('layout-3')){
+                    sliderFor.on('init',(event, slick) => {
+                        sliderFor.find('.animated-loading').removeClass('animated-loading');
+                    });
+
+                    sliderFor.slick({
+                        slidesToShow: thumbnailToShow,
+                        slidesToScroll: 1,
+                        asNavFor: checkNav,
+                        arrows: true,
+                        dots: false,
+                        focusOnSelect: true,
+                        infinite: true,
+                        nextArrow: window.arrows.icon_next,
+                        prevArrow: window.arrows.icon_prev,
+                        rtl: window.rtl_slick,
+                        responsive: [
+                            {
+                                breakpoint: 1600,
+                                settings: {
+                                    slidesToShow: thumbnailToShow > 3 ? thumbnailToShow - 1 : thumbnailToShow,
+                                    slidesToScroll: 1
+                                }
+                            },
+                            {
+                                breakpoint: 767,
+                                settings: {
+                                    slidesToShow: 3,
+                                    slidesToScroll: 1
+                                }
+                            }
+                        ]
+                    });
+                } else if($scope.hasClass('layout-4') && !$scope.find('.productView-thumbnail-wrapper.is-hidden-desktop.is-hidden-mobile').length) {
                     sliderFor.on('init',(event, slick) => {
                         sliderFor.find('.animated-loading').removeClass('animated-loading');
                     });
@@ -5354,6 +5388,87 @@
                     let className = $(event.currentTarget).data('filter'),
                     thisMetafields = $(event.currentTarget).data('metafields-vig');
                     thisMetafields && thisMetafields.length ? setImageForMetafields(thisMetafields, true) : setImage(className, $(event.currentTarget));
+                });
+            }
+        },
+
+        initMakeToOrder: function($scope) {
+            const $block = $('.size-radio-wrapper', $scope);
+
+            if ($block.length > 0) {
+                const $radioBtn = $('input[name="size-option"]', $block),
+                      $addToCartBtn = $('#product-add-to-cart', $scope),
+                      $makeToOrderBtn = $('#make-to-order-btn', $scope),
+                      $selectWrapper = $('[data-select-size]', $scope),
+                      $inputWrapper = $('[data-input-size]', $scope),
+                      $inputFields = $('input[name^="properties["]', $inputWrapper);
+
+                $radioBtn.change(function(e) {
+                    var selectValue = $(this).val();
+
+                    if (selectValue == 'make-to-order') {
+                        $inputWrapper.show();
+                        $selectWrapper.hide();
+                        $makeToOrderBtn.show();
+                        $addToCartBtn.hide();
+                    } else {
+                        $inputWrapper.hide();
+                        $selectWrapper.show();
+                        $makeToOrderBtn.hide();
+                        $addToCartBtn.show();
+                    }
+                });
+
+                $inputFields.on('input change', function(e) {
+                    let allFilled = true;
+
+                    $inputFields.each(function() {
+                        if (!$(this).val().trim()) {
+                            allFilled = false;
+                            return false;
+                        }
+                    });
+
+                    $makeToOrderBtn.prop('disabled', !allFilled);
+                });
+
+                $doc.on('click', '[data-close-make-to-order], .background-overlay', (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    $('body').removeClass('make-to-order-show');
+                });
+
+                $(document).on('click', '#make-to-order-btn' , function(e) {
+                    e.stopPropagation();
+                    var $form = $('.make-to-order-form');
+
+                    let options = [];
+                    $('.productView-top fieldset:not([data-select-size]) [data-header-option]', $scope).each(function() {
+                        options.push($(this).text().trim());
+                    });
+                    options = options.join(' / ');
+                    
+                    let sizes = [];
+                    $inputFields.each(function () {
+                        const $field = $(this);
+                        const nameAttr = $field.attr('name');
+                        const value = $field.val().trim();
+
+                        if (value) {
+                            const match = nameAttr.match(/^properties\[(.+)\]$/);
+                            if (match) {
+                                const propertyName = match[1];
+                                sizes.push(`${propertyName}: ${value}`);
+                            }
+                        }
+                    });
+                    sizes = sizes.join(' / ');
+                    
+                    $form.find('input[name="contact[Product Option]"]').val(options);
+                    $form.find('input[name="contact[Product Size]"]').val(sizes);
+
+                    $('body').addClass('make-to-order-show');
                 });
             }
         },

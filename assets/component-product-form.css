@@ -247,6 +247,7 @@
 }
 
 .productView-options .size-properties-wrapper {
+    display: none;
     margin-top: 14px;
 }
 
@@ -308,7 +309,7 @@
     letter-spacing: 0px;
     color: #6F6F6F;
 }
-.size-radio-wrapper .radio-item .infor{
+.size-radio-wrapper .radio-item .info{
     margin: 0 0 0 32px;
     font-weight: 400;
     font-size: 14px;

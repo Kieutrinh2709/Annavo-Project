@@ -173,6 +173,13 @@
             when 'variant_picker'
                 assign picker_type = block.settings.picker_type
                 assign show_variant_image_group = block.settings.show_variant_image_group
+                assign has_size_option = false
+
+                for option in product.options_with_values
+                    if option.name == 'Size'
+                        assign has_size_option = true
+                    endif
+                endfor
             when 'grouped_product'
                 assign product_combo = product.metafields.c_f.product_combo
                 assign combo_discount_rate = product.metafields.c_f.combo_discount_rate | plus: 0 | divided_by: 100.00
@@ -965,7 +972,8 @@
                                                     variantCount: variant_count,
                                                     current_variant: current_variant,
                                                     picker_type: picker_type,
-                                                    show_variant_image_group: show_variant_image_group
+                                                    show_variant_image_group: show_variant_image_group,
+                                                    has_size_option: has_size_option
                                                 %}
                                             </div>
                                         {% endunless %}
@@ -1230,7 +1238,8 @@
                                                     qty_style: qty_style,
                                                     show_subtotal_text: show_subtotal_text,
                                                     subtotal: subtotal,
-                                                    subtotal_style: subtotal_style
+                                                    subtotal_style: subtotal_style,
+                                                    has_size_option: has_size_option
                                                 %}
                                             </div>
                                         {% endunless %}
@@ -1543,6 +1552,10 @@
         index: index,
         load_script: true
     %}
+{%- endif -%}
+
+{%- if has_size_option -%}
+    {% render 'halo-make-to-order-popup' %}
 {%- endif -%}
 
 <script src="{{ 'variants.js' | asset_url }}" defer="defer"></script>
