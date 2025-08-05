@@ -240,7 +240,7 @@
 
 /*  Page Product Gallary */
 .product-gallery .productView {
-    padding-bottom: 115px;
+    padding-bottom: 80px;
     padding-top: 0;
 }
 
@@ -315,11 +315,6 @@
 .productView-image-wrapper .productView-nav.productView-nav-gallery .slick-list {
     margin-left: -5px;
     margin-right: -5px;
-}
-
-.productView-image-wrapper .productView-nav.productView-nav-gallery .slick-slide {
-    padding-left: 5px;
-    padding-right: 5px;
 }
 
 .productView-image-wrapper .productView-nav.productView-nav-gallery .slick-slide div:first-child .productView-image {
@@ -1473,14 +1468,14 @@
     margin-left: 5px;
 }
 
-.productView-wishlist a.wishlist-added{
+/* .productView-wishlist a.wishlist-added{
     background-color: var(--product-wishlist-bg-added);
     border-color: var(--product-wishlist-bg-added);
 }
 
 .productView-wishlist a.wishlist-added .icon{
     fill: var(--product-wishlist-color-added);
-}
+} */
 
 .productView-groupBottom{
     margin: 13px 0 0 0;
@@ -2437,6 +2432,37 @@ quantity-input.disabled {
     display: none;
 }
 
+.productView .policies-block {
+    display: flex;
+    padding: 24px 32px;
+    gap: 20px;
+    border: 1px solid #E0E0E0;
+}
+.productView .policies-block .policies-item {
+    display: flex;
+    align-items: center;
+    flex: 0 0 50%;
+}
+.productView .policies-block .policies-item img {
+    margin-right: 16px;
+}
+.productView .policies-block .policies-item .policies-text {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: var(--color-text);
+}
+.productView .policies-block .policies-item .policies-des {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #3C3C3C;
+}
+
 @media screen and (max-width: 1279px) {
     .product-horizontal-tabs .productView-bottom {
         padding-left: 15px;
@@ -2816,14 +2842,12 @@ quantity-input.disabled {
         height: 14px;
     }
 
-    .productView-tab .tabs-contents-horizontal-compact .tab-content,
     .productView-tab .tabs-contents-horizontal .tab-content {
         display: block;
         border-top: 1px solid #d3d3d3;
     }
 
     .productView-tab .tabs-contents-vertical .tab-content .toggle-content:not(.show-mobile),
-    .productView-tab .tabs-contents-horizontal-compact .tab-content .toggle-content:not(.show-mobile),
     .productView-tab .tabs-contents-horizontal .tab-content .toggle-content:not(.show-mobile),
     .productView-tab .tabs-contents-popup .tab-content .toggle-content:not(.show-mobile) {
         display: none;
@@ -2899,6 +2923,15 @@ quantity-input.disabled {
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
+    }
+
+    .productView .policies-block {
+        padding: 12px 16px;
+        gap: 10px;
+        /* flex-wrap: wrap; */
+    }
+    .productView .policies-block .policies-item {
+        /* flex: 0 0 100%; */
     }
 }
 
@@ -3142,13 +3175,20 @@ quantity-input.disabled {
     .productView-nav.style-3.enable_variant_image_group .productView-image:nth-child(3n+3) {
         width: 100% !important;
     }
+    
+    .product-gallery .container-1770,
+    .product-gallery .productView-container {
+        max-width: 1850px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
 
     .product-gallery .productView-nav .slick-dots {
         bottom: unset;
         top: 25%;
-        left: -4px;
+        left: -16px;
         width: fit-content;
-        transform: translateX(-100%);
+        transform: translate(-100%, -100%);
         line-height: 1;
     }
 
@@ -3200,12 +3240,13 @@ quantity-input.disabled {
     }
 
     .productView-wishlist a:hover{
-        background-color: var(--product-wishlist-bg-added);
-        border-color: var(--product-wishlist-bg-added);
+        /* background-color: var(--product-wishlist-bg-added);
+        border-color: var(--product-wishlist-bg-added); */
+        text-decoration: underline;
     }
 
     .productView-wishlist a:hover .icon{
-        fill: var(--product-wishlist-color-added);
+        /* fill: var(--product-wishlist-color-added); */
     }
 
     .productView-share .at-share-btn-elements .at-share-btn:hover .at-icon-wrapper{

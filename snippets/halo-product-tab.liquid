@@ -55,9 +55,9 @@
 				-%}
 				{%- if has_tab and title != blank -%}
 					<li class="tab">
-			            <a class="tab-title{% if block.type == 'description' and tab_layout contains 'horizontal' %} is-open{% endif %}" href="#tab-{{ block.settings.title | escape | handleize }}" style="--border-color: {{ border_color }}">
+			            <div class="tab-title{% if block.type == 'description' and tab_layout contains 'horizontal' %} is-open{% endif %}" href="#tab-{{ block.settings.title | escape | handleize }}" style="--border-color: {{ border_color }}">
 			                {{ block.settings.title | escape }}
-			            </a>
+			            </div>
 			        </li>
 			    {%- endif -%}
 			{%- endfor -%}
@@ -114,7 +114,7 @@
 					endif
 					if tab_layout_mobile == 'popup'
 						assign style_mobile = 'popup-mobile'
-					elsif tab_layout_mobile == 'vertical_sidebar'
+					elsif tab_layout_mobile == 'horizontal'
 						assign style_mobile = 'sidebar-mobile'
 					endif
 				endif

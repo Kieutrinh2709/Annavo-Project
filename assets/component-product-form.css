@@ -300,10 +300,11 @@
     letter-spacing: 0px;
     color: #262626;
 }
-.size-radio-wrapper .radio-item .sub-label{
+.size-radio-wrapper .radio-item .sub-label,
+.size-radio-wrapper .radio-item .sub-label .price-item,
+.size-radio-wrapper .radio-item .sub-label .price-item .money {
     margin-left: auto;
     font-weight: 500;
-    font-style: Medium;
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 0px;

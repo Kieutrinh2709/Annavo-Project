@@ -182,6 +182,12 @@ class VariantSelects extends HTMLElement {
 
                 if (source && destination) {
                     destination.innerHTML = source.innerHTML;
+
+                    var $currentPrice = source.querySelector('.price__sale .price__last') || source.querySelector('.price__regular .price__last'),
+                        $priceEle = document.querySelector('.sub-label.price');
+                    if ($currentPrice && $priceEle) {
+                        $priceEle.innerHTML = $currentPrice.innerHTML;
+                    }
                 }
 
                 if (this.checkNeedToConvertCurrency()) {
@@ -626,8 +632,9 @@ class VariantSelects extends HTMLElement {
         const inputWrappers = [...this.querySelectorAll('.product-form__input')];
         const inputLength = inputWrappers.length;
         const variant_swatch = [...this.querySelectorAll('.product-form__swatch')];
+
         inputWrappers.forEach((option, index) => {
-            option.querySelector('[data-header-option]').innerText = option.querySelector(':checked').value;
+            option.querySelector('[data-header-option]').innerText = option.querySelector(':checked')?.value;
             if (index === 0 && inputLength > 1) return;
             const optionInputs = [...option.querySelectorAll('input[type="radio"], option')]
             const previousOptionSelected = inputLength > 1 ? inputWrappers[index - 1].querySelector(':checked').value : inputWrappers[index].querySelector(':checked').value;

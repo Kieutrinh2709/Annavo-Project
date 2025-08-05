@@ -37,12 +37,6 @@
             "spacing_bottom": 16
           }
         },
-        "custom_size_option_pCtNeH": {
-          "type": "custom_size_option",
-          "settings": {
-            "enabled_custom_size": true
-          }
-        },
         "4f95b592-8369-4ab0-b30d-24e463fb6890": {
           "type": "price",
           "settings": {
@@ -159,12 +153,18 @@
             "enable_btn_show_more": false,
             "maximum_des_to_show": 300
           }
+        },
+        "custom_liquid_meRrVi": {
+          "type": "custom_liquid",
+          "settings": {
+            "display_below_tabs": true,
+            "custom_liquid": "<div class=\"policies-block\">\n  <div class=\"policies-item\">\n      <img src=\"//theme-z.myshopify.com/cdn/shop/files/fi_4240615.svg?v=1746435688\" loading=\"lazy\" width=\"24\" height=\"24\">\n      <div class=\"policies-content\">\n        <span class=\"policies-text\">FREE SHIPPING</span>\n        <div class=\"policies-des\">Enjoy complimentary shipping on qualifying orders.</div>\n      </div>\n  </div>\n  <div class=\"policies-item\">\n      <img src=\"//theme-z.myshopify.com/cdn/shop/files/fi_8013078.svg?v=1746435688\" loading=\"lazy\" width=\"24\" height=\"24\">\n      <div class=\"policies-content\">\n        <span class=\"policies-text\">FREE RETURNS</span>\n        <div class=\"policies-des\">Easy returns within 7 days of purchase.</div>\n      </div>\n  </div>\n</div>"
+          }
         }
       },
       "block_order": [
         "breadcrumb_y3rgw3",
         "b0ea69b7-8a54-4a3c-9abd-0fcceeabaaa0",
-        "custom_size_option_pCtNeH",
         "4f95b592-8369-4ab0-b30d-24e463fb6890",
         "d98e243b-3682-495a-965a-1c7f7d460880",
         "faa2b3e6-c0a1-4269-baa6-d2605efe4c05",
@@ -173,7 +173,8 @@
         "bd066b80-c8e3-4f3e-8280-b27fbf6e9423",
         "87197f5f-be0e-4b89-9270-62bf6917ebe7",
         "3d9ea84d-5527-4bce-abe6-5debef3ec955",
-        "b9d6eb19-10f4-41f8-bfdc-ea10e8b3182a"
+        "b9d6eb19-10f4-41f8-bfdc-ea10e8b3182a",
+        "custom_liquid_meRrVi"
       ],
       "settings": {
         "container": "1770",
@@ -262,31 +263,30 @@
     },
     "product-recommendations": {
       "type": "product-recommendations",
-      "disabled": true,
       "settings": {
         "display_product_block": true,
-        "product_block_container": "container",
+        "product_block_container": "1770",
         "padding_full_width": 0,
         "enable_border_top": true,
         "enable_border_bottom": false,
-        "color_border_bottom": "#e8e8e8",
-        "border_style": "container",
+        "color_border_bottom": "#c6c6c6",
+        "border_style": "full",
         "mg_top_desktop": 40,
         "mg_top_tablet": 35,
         "mg_top_mobile": 35,
         "mg_bottom_desktop": 0,
         "mg_bottom_tablet": 0,
         "mg_bottom_mobile": 0,
-        "product_block_layout": "slider",
+        "product_block_layout": "scroll",
         "product_bg": "#ffffff",
         "style_block_header": "style1",
         "product_block_title": "Related Products",
         "enable_border_title": false,
         "mg_top_title": 27,
-        "mg_bottom_title": 3,
-        "fontsize_title": 18,
+        "mg_bottom_title": 40,
+        "fontsize_title": 40,
         "fontsize_title_mb": 18,
-        "color_title": "#232323",
+        "color_title": "#262626",
         "border_color_title": "#232323",
         "product_block_title_align": "center",
         "product_block_limit": 10,
@@ -298,9 +298,9 @@
         "product_block_arrows": true,
         "product_block_arrows_mb": false,
         "product_block_show": "4",
-        "product_block_per_view": "4",
-        "show_half": true,
-        "scroll_height": 4,
+        "product_block_per_view": "5",
+        "show_half": false,
+        "scroll_height": 2,
         "scroll_track_bg": "#f1f1f1",
         "scroll_thumb_color": "#000000",
         "scroll_thumb_hover_color": "#444444",

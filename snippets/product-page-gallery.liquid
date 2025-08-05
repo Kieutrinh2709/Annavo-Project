@@ -74,6 +74,8 @@
     assign sidebar_collapse = section.settings.sidebar_collapse
     assign sidebar_collapse_default = section.settings.sidebar_collapse_default
     assign has_breadcrumb = false
+    assign filtered_blocks = ''
+
     for block in section.blocks
         case block.type
             when 'breadcrumb'
@@ -97,7 +99,6 @@
                 assign has_breadcrumb = true
             when 'title'
                 assign check_block_title = true
-
             when 'quantity_selector'
                 assign check_block_qty = true
                 assign qty_style = block.settings.qty_style
@@ -204,6 +205,10 @@
                 endif
             when 'category', 'product_block', 'image', 'policies'
                 assign has_sidebar = true
+            when 'custom_liquid'
+                if block.settings.display_below_tabs == true
+                    assign filtered_blocks = filtered_blocks | append: block.id | append: ','
+                endif
         endcase
     endfor
     if has_sidebar
@@ -1352,7 +1357,9 @@
                                             </div>
                                         {%- endif -%}
                                     {%- when 'custom_liquid' -%}
-                                        {{ block.settings.custom_liquid }}
+                                        {%- unless block.settings.display_below_tabs == true -%}
+                                            {{ block.settings.custom_liquid }}
+                                        {%- endunless -%}
                                     {%- when 'complementary_products' -%}
                                         <div class="productView-moreItem{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"
                                             style="--spacing-top: {{ spacing_top | append: 'px' }};
@@ -1478,6 +1485,15 @@
                                     %}
                                 {%- endif -%}
                             {%- endif -%}
+
+                            {%- assign block_ids = filtered_blocks | split: ',' -%}
+                            {%- for block_id in block_ids -%}
+                                {%- assign block_id = block_id | strip -%}
+                                {%- if block_id != '' -%}
+                                    {%- assign block = section.blocks | where: 'id', block_id | first -%}
+                                    {{ block.settings.custom_liquid }}
+                                {%- endif -%}
+                            {%- endfor -%}
                         </div>
                     </div>
                 </div>
