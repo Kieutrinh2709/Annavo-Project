@@ -88,6 +88,7 @@
             font-size: {{ fontsize_title | append: 'px'  }};
             margin-top: {{ mg_top_title | append: 'px' }};
             margin-bottom: {{ mg_bottom_title | append: 'px' }};
+            line-height: 1.25;
             /*text-transform: unset;*/
         }
 
@@ -123,12 +124,17 @@
             flex-direction: row;
             flex-wrap: nowrap;
             user-select: none;
-            padding-bottom: 45px;
+            padding-bottom: 40px;
             overflow: auto;
             overflow-y: clip;
-            gap: 30px;
+            gap: {{ as_grid_gap |  append: 'px' }};
+        }
+
+        {% if show_half %}
+         .section-block-{{section.id}} .products-flex {
             padding-right: 60px;
         }
+        {% endif %}
 
         body.layout_rtl .section-block-{{section.id}} .products-flex {
             padding-left: 60px;
@@ -170,11 +176,7 @@
         @media (max-width: 1024px) {
             .section-block-{{ section.id }} .products-flex {
                 --count: 2!important;
-                gap: 15px;
-            }
-            
-            .section-block-{{ section.id }} .products-flex .product {
-                padding: 0 7px;
+                gap: {{ as_grid_gap |  append: 'px' }};
             }
 
             .section-block-{{section.id}} .products-flex {
@@ -287,13 +289,13 @@
         }
 
         @media (min-width: 768px) {
-            .section-block-{{ section.id }} .products-flex .product  {
+            .section-block-{{ section.id }} .products-flex.column-5 .product  {
                 {% if show_half %}
                     flex-basis: calc(100% / calc(var(--count) + 0.5));
                     width: calc(100% / calc(var(--count) + 0.5));
                 {% else %}
-                    flex-basis: calc(100% / var(--count));
-                    width: calc(100% / var(--count));
+                    flex-basis: calc((100% - ({{as_grid_gap |  append: 'px'}} * (var(--count) - 1))) / var(--count));
+                    width: calc((100% - ({{as_grid_gap | append: 'px'}} * (var(--count) - 1))) / var(--count));
                 {% endif %}
             }
         }
@@ -307,7 +309,7 @@
     </style>
     <{% if swipe %}product-slider-component{% else %}div{% endif %} class="halo-block halo-product-block halo-recommendations-block section-block-{{section.id}}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" id="halo-recommendations-block-{{ section.id }}" data-limit="{{ limit }}" data-layout="{{ layout }}" sectionId="{{ section.id }}" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ limit }}" data-image-ratio="{{ image_ratio }}" data-swipe="{{ swipe }}" data-recommendations-block style="--grid-gap: {{ grid_gap }}">
         {% if recommendations.performed and recommendations.products_count > 0 %}
-            <{% if layout == 'scroll' %}product-scroller{% else %}div{% endif %} class="wrapper-container {% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
+            <{% if layout == 'scroll' %}product-scroller{% else %}div{% endif %} class="wrapper-container d-block {% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
                 {%- if block_title != blank -%}
                     <div class="halo-block-header text-{{ block_title_align }} block-title--{{section.settings.style_block_header}}">
                         <h3 class="title{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
@@ -315,7 +317,7 @@
                         </h3>
                     </div>
                 {%- endif -%}
-                <{% if swipe %}product-slider-component{% else %}div{% endif %} class="halo-block-content {% if layout == 'scroll' %}is-scroll{% endif %}" {% if layout == 'scroll' %}data-drag-container{% endif %}>
+                <{% if swipe %}product-slider-component{% else %}div{% endif %} class="halo-block-content {% if layout == 'scroll' %}is-scroll{% endif %}" {% if layout == 'scroll' %}data-drag-container{% endif %} style="--max-width-container: {% if container == '1170' %}1170px{% elsif container == '1770' %}1770px{% elsif container == 'fullwidth'%}100%{% else %}container{% endif %}">
                     {%- if layout== 'grid' -%}
                         {%- liquid
                             assign product_limit = 0
@@ -757,7 +759,7 @@
             "label": "t:settings_schema.typography.settings.typography.grid_gap",
             "min": 0,
             "max": 30,
-            "step": 5,
+            "step": 1,
             "unit": "t:sections.layout.mg_desktop.unit",
             "default": 30
         },

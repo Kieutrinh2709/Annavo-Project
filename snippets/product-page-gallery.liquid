@@ -1,4 +1,4 @@
-{%- liquid
+{%- liquid 
     assign container = section.settings.container
     assign padding_full_width = section.settings.padding_full_width
     assign show_sticky_info = section.settings.show_sticky_info
@@ -74,6 +74,8 @@
     assign sidebar_collapse = section.settings.sidebar_collapse
     assign sidebar_collapse_default = section.settings.sidebar_collapse_default
     assign has_breadcrumb = false
+    assign filtered_blocks = ''
+
     for block in section.blocks
         case block.type
             when 'breadcrumb'
@@ -97,7 +99,6 @@
                 assign has_breadcrumb = true
             when 'title'
                 assign check_block_title = true
-
             when 'quantity_selector'
                 assign check_block_qty = true
                 assign qty_style = block.settings.qty_style
@@ -173,6 +174,13 @@
             when 'variant_picker'
                 assign picker_type = block.settings.picker_type
                 assign show_variant_image_group = block.settings.show_variant_image_group
+                assign has_size_option = false
+
+                for option in product.options_with_values
+                    if option.name == 'Size'
+                        assign has_size_option = true
+                    endif
+                endfor
             when 'grouped_product'
                 assign product_combo = product.metafields.c_f.product_combo
                 assign combo_discount_rate = product.metafields.c_f.combo_discount_rate | plus: 0 | divided_by: 100.00
@@ -197,6 +205,10 @@
                 endif
             when 'category', 'product_block', 'image', 'policies'
                 assign has_sidebar = true
+            when 'custom_liquid'
+                if block.settings.display_below_tabs == true
+                    assign filtered_blocks = filtered_blocks | append: block.id | append: ','
+                endif
         endcase
     endfor
     if has_sidebar
@@ -706,8 +718,8 @@
                                     </div>
                                 {%- endif -%}
                             </div>
-                            {%- if thumnail_layout != '4' -%}
-                                <div class="productView-thumbnail-wrapper{% unless show_thumbnail_mobile %} is-hidden-mobile{% endunless %}">
+                            {%- unless thumnail_layout == '4' and show_thumbnail_mobile == false -%}
+                                <div class="productView-thumbnail-wrapper{% unless show_thumbnail_mobile %} is-hidden-mobile{% endunless %}{% if thumnail_layout == '4' %} is-hidden-desktop{% endif %}">
                                     <div class="productView-for clearfix" data-max-thumbnail-to-show="{{ max_thumbnail_to_show }}">
                                         {%- for media in product.media -%}
                                             {%- case media.media_type -%}
@@ -758,7 +770,7 @@
                                         {%- endfor -%}
                                     </div>
                                 </div>
-                            {%- endif -%}
+                            {%- endunless -%}
                         </div>
                     </div>
                     <div class="halo-productView-right productView-details clearfix">
@@ -965,7 +977,8 @@
                                                     variantCount: variant_count,
                                                     current_variant: current_variant,
                                                     picker_type: picker_type,
-                                                    show_variant_image_group: show_variant_image_group
+                                                    show_variant_image_group: show_variant_image_group,
+                                                    has_size_option: has_size_option
                                                 %}
                                             </div>
                                         {% endunless %}
@@ -1230,7 +1243,8 @@
                                                     qty_style: qty_style,
                                                     show_subtotal_text: show_subtotal_text,
                                                     subtotal: subtotal,
-                                                    subtotal_style: subtotal_style
+                                                    subtotal_style: subtotal_style,
+                                                    has_size_option: has_size_option
                                                 %}
                                             </div>
                                         {% endunless %}
@@ -1343,7 +1357,9 @@
                                             </div>
                                         {%- endif -%}
                                     {%- when 'custom_liquid' -%}
-                                        {{ block.settings.custom_liquid }}
+                                        {%- unless block.settings.display_below_tabs == true -%}
+                                            {{ block.settings.custom_liquid }}
+                                        {%- endunless -%}
                                     {%- when 'complementary_products' -%}
                                         <div class="productView-moreItem{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"
                                             style="--spacing-top: {{ spacing_top | append: 'px' }};
@@ -1469,6 +1485,15 @@
                                     %}
                                 {%- endif -%}
                             {%- endif -%}
+
+                            {%- assign block_ids = filtered_blocks | split: ',' -%}
+                            {%- for block_id in block_ids -%}
+                                {%- assign block_id = block_id | strip -%}
+                                {%- if block_id != '' -%}
+                                    {%- assign block = section.blocks | where: 'id', block_id | first -%}
+                                    {{ block.settings.custom_liquid }}
+                                {%- endif -%}
+                            {%- endfor -%}
                         </div>
                     </div>
                 </div>
@@ -1543,6 +1568,10 @@
         index: index,
         load_script: true
     %}
+{%- endif -%}
+
+{%- if has_size_option -%}
+    {% render 'halo-make-to-order-popup' %}
 {%- endif -%}
 
 <script src="{{ 'variants.js' | asset_url }}" defer="defer"></script>

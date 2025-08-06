@@ -1,0 +1,93 @@
+body.make-to-order-show {
+    overflow-y: hidden;
+    /*height: 100%;*/
+}
+
+body.make-to-order-show .background-overlay {
+    opacity: 1;
+    pointer-events: all;
+    z-index: 101;
+}
+
+body.make-to-order-show .halo-make-to-order-popup {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate3d(-50%, -50%, 0);
+    z-index: 103;
+}
+
+#halo-make-to-order-popup {
+    max-width: 480px;
+}
+
+#halo-make-to-order-popup .halo-popup-wrapper {
+    padding: 36px 30px 30px;
+}
+
+#halo-make-to-order-popup .halo-popup-wrapper .halo-popup-header {
+    padding-top: 0;
+    margin-bottom: 32px;
+}
+
+#halo-make-to-order-popup .halo-popup-title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0px;
+    margin-bottom: 24px;
+    color: #262626;
+}
+
+#halo-make-to-order-popup .halo-popup-desc {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    color: #393939;
+    padding: 0;
+}
+
+#halo-make-to-order-popup .form-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 16px;
+    row-gap: 32px;
+}
+
+#halo-make-to-order-popup .form-field {
+    width: 100%;
+}
+#halo-make-to-order-popup .form-field.col-6 {
+    width: calc(50% - 8px);
+}
+
+#halo-make-to-order-popup .form-label {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0px;
+    color: #232323;
+}
+
+#halo-make-to-order-popup .form-field-textarea .form-input::placeholder {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0px;
+    color: #8D8D8D;
+}
+
+#halo-make-to-order-popup #make-to-order-submit {
+    background-color: #232323;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    text-align: center;
+}
+
+#halo-make-to-order-popup .h-captcha {
+    display: none;
+}

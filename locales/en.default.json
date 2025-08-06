@@ -353,6 +353,16 @@
       "step_by_step": {
           "next": "Next step",
           "previous": "Previous step"
+      },
+      "make_to_order": {
+        "label": "Make to order",
+        "info": "Crafted specifically for you. Allow 10-14 days for production before shipping. This option ensures better sizing flexibility and customization. Non-refundable after order confirmation.",
+        "sub_label": "Price upon request",
+        "success": "Thank you for submitting your information! We will get back to you as soon as possible.",
+        "error": "An error occurred while submitting your information. Please try again later.",
+        "submit": "Submit custom order",
+        "popup_title": "Your Custom Order",
+        "popup_desc": "To help us tailor your piece perfectly, please any custom requests below. Our team will review and confirm your order details before production begins."
       }
     },
     "modal": {

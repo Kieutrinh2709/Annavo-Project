@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="{{ 'component-make-to-order.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-make-to-order.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div class="halo-popup halo-make-to-order-popup" data-make-to-order id="halo-make-to-order-popup">
+    <div class="halo-popup-wrapper">
+        <button type="button" class="halo-popup-close clearfix" data-close-make-to-order aria-label="{{ 'general.common.close' | t }}">{% render 'icon-close' %}</button>
+        <div class="halo-popup-header">
+            <h5 class="halo-popup-title text-left">{{ 'products.product.make_to_order.popup_title' | t }}</h5>
+            <span class="halo-popup-desc text-left">{{ 'products.product.make_to_order.popup_desc' | t }}</span>
+        </div>
+        <div class="halo-popup-content">
+            {%- form 'contact', id: 'make_to_order_form', class: 'make-to-order-form' -%}
+                <div class="form-wrapper">
+                    <input type="hidden" name="contact[Form]" value="Make to order"/>
+    
+                    {%- if product -%}
+                        <input type="hidden" name="contact[Product Title]" value="{{ product.title }}" />
+                        <input type="hidden" name="contact[Product Option]" value=""/>
+                        <input type="hidden" name="contact[Product Size]" value=""/>
+                    {%- endif -%}
+    
+                    <div class="form-field">
+                        <label class="form-label" for="makeToOrderName">{{ 'ask_an_expert.general.name' | t }}</label>
+                        <input class="form-input form-input-placeholder" type="text" required id="makeToOrderName" name="contact[Name]" autocapitalize="words">
+                    </div>
+                    <div class="form-field col-6">
+                        <label class="form-label" for="makeToOrderPhone">{{ 'ask_an_expert.general.phone' | t }}</label>
+                        <input class="form-input form-input-placeholder" type="tel" required id="makeToOrderPhone" name="contact[Phone number]" pattern="[0-9]*">
+                    </div>
+                    <div class="form-field col-6">
+                        <label class="form-label" for="makeToOrderMail">{{ 'ask_an_expert.general.mail' | t }}</label>
+                        <input class="form-input form-input-placeholder" type="email" name="contact[email]" required id="makeToOrderMail" autocorrect="off" autocapitalize="off">
+                    </div>
+                    <div class="form-field form-field-textarea">
+                        <label class="form-label" for="makeToOrderMessage">Custom Notes</label>
+                        <textarea class="form-input form-input-placeholder" rows="4" name="contact[message]" id="makeToOrderMessage" placeholder="Let us know if you have any specific requests (e.g. lining, sleeve adjustment, embroidery, etc.)"></textarea>
+                    </div>
+                    <button type="submit" class="button button--primary" id="make-to-order-submit">SUBMIT CUSTOM ORDER</button>
+                </div>
+
+                <div class="form-results">
+                    <div class="message"></div>
+                    {%- if form.posted_successfully? -%}
+                        <script>
+                            document.addEventListener("DOMContentLoaded", (event) => {
+                                console.log('dung1')
+
+                                var popup = document.getElementById('halo-make-to-order-popup'),
+                                    $form = popup?.querySelector('.form-wrapper'),
+                                    $result = popup?.querySelector('.form-results'),
+                                    $message = popup?.querySelector('.message');
+
+                                messageText = "{{ 'products.product.make_to_order.success' | t }}";
+
+                                $form.style.display = 'none';
+                                $result.style.display = 'block';
+                                document.body.classList.add('make-to-order-show');
+
+                                $message.innerHTML = '<div class="alertBox alertBox--success">\
+                                    <p class="alertBox-message">'+ messageText +'</p>\
+                                </div>';
+                            });
+                        </script>
+                    {%- elsif form.errors -%}
+                        <script>
+                            document.addEventListener("DOMContentLoaded", (event) => {
+                                console.log('dung0')
+                                var popup = document.getElementById('halo-make-to-order-popup'),
+                                    $form = popup?.querySelector('.form-wrapper'),
+                                    $result = popup?.querySelector('.form-results'),
+                                    $message = popup?.querySelector('.message');
+
+                                messageText = "{{ 'products.product.make_to_order.error' | t }}";
+
+                                $form.style.display = 'none';
+                                $result.style.display = 'block';
+                                document.body.classList.add('make-to-order-show');
+
+                                $message.innerHTML = '<div class="alertBox alertBox--error">\
+                                                <p class="alertBox-message">'+ messageText +'</p>\
+                                            </div>';
+                            });
+                        </script>
+                    {%- endif -%}
+                </div>
+            {%- endform -%}
+        </div>
+    </div>
+</div>
