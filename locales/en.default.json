@@ -485,7 +485,7 @@
         "product": "Product",
         "price": "Price",
         "total": "Total",
-        "quantity": "Quantity"
+        "quantity": "QTY"
       },
       "update": "Update",
       "upsell": "The following items has been added to your cart:",
