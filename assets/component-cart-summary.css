@@ -1,6 +1,6 @@
 .cart--totals-title {
     font-family: var(--font-heading-family);
-    font-size: calc(var(--font-heading-size) - 4px);
+    font-size: calc(var(--font-heading-size) - 2px);
     font-weight: var(--font-heading-weight);
     text-align: left;
     line-height: var(--body-line-height);

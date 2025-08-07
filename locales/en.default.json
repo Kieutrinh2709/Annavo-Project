@@ -433,7 +433,7 @@
     },
     "term_condition": "Terms & conditions",
     "cart": {
-      "title": "Your cart",
+      "title": "My cart",
       "caption": "Cart items",
       "checkout": "Checkout",
       "proceed_to_checkout": "Proceed to checkout",

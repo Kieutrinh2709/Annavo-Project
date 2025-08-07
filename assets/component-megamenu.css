@@ -17,7 +17,7 @@
 }
 
 .menu-dropdown__column .site-nav{
-    padding: 0 15px;
+    padding: 0 20px;
     margin-bottom: 24px;
     transition: none;
 }
@@ -133,7 +133,7 @@
     line-height: var(--mega-menu-lv3-line-height);
     letter-spacing: var(--mega-menu-lv3-letter-spacing);
     text-transform: var(--mega-menu-lv3-text-transform);
-    padding: 4px 0;
+    padding: 6px 0;
 }
 
 .site-nav-banner{
@@ -521,13 +521,9 @@
     }
 
     .header-navigation .header__icon--cart .cart-count-bubble  {
-        background: var(--cart_count_bubble_bg);
-        color: var(--cart_count_bubble_color);
+        background: #000;
+        color: #fff;
         font-size: var(--cart_count_bubble_font_size);
-    }
-
-    .header-navigation .header__icon--cart:hover .cart-count-bubble .text {
-        color: var(--cart_count_bubble_color);
     }
     .header-navigation .header-language_currency {
         vertical-align: middle

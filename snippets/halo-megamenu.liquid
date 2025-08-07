@@ -246,8 +246,8 @@
                                 {%- for childlink in link.links -%}
                                     {% assign childtitle = childlink.title | escape | downcase | handle %}
                                     <div class="site-nav dropdown d-inline-block ver-alg-top w-100{% if show_label_blink %} menu-lv-blink{% endif %}" data-gridItem>
-                                        <div class="site-nav-list">
-                                            <a href="{{ childlink.url }}" class="site-nav-title{% if childlink.links != blank %} menu_mobile_link_2{% endif %}{% if sale_item_lv2 contains childtitle %} active-sale{% endif %}"{% if childlink.current %} aria-current="page"{% endif %}>
+                                        <div class="site-nav-list{% if childlink.links == blank %} show-banner{% endif %}">
+                                            <a href="{{ childlink.url }}" class="site-nav-title link-effect{% if childlink.links != blank %} menu_mobile_link_2{% endif %}{% if sale_item_lv2 contains childtitle %} active-sale{% endif %}"{% if childlink.current %} aria-current="page"{% endif %}>
                                                 <span class="text{% if childlink.current %} site-nav-active{% endif %}">{{ childlink.title | escape }}</span>
                                                 {%- if childlink.links != blank -%}
                                                     <span class="icon-dropdown" data-toggle-menu-mb="">{% render 'icon-caret-right' %}</span>
@@ -260,6 +260,7 @@
                                                     <span class="label hot-label">{{ 'general.navigation.hot_label' | t }}</span>
                                                 {%- endif -%}
                                             </a>
+
                                             {%- if childlink.links != blank -%}
                                                 <div class="site-nav-sub-banner">
                                             {%- endif -%}                                             
@@ -461,7 +462,7 @@
                                     </div>
                                     <div class="site-nav site-nav-right dropdown{% if show_label_blink %} menu-lv-blink{% endif %}">
                                         <div class="site-nav-list">
-                                            <a href="{{ childlink.url }}" class="site-nav-title{% if childlink.links != blank %} menu_mobile_link_2{% endif %}{% if sale_item_lv2 contains childtitle %} active-sale{% endif %}"{% if childlink.current %} aria-current="page"{% endif %}>
+                                            <a href="{{ childlink.url }}" class="site-nav-title link-effect{% if childlink.links != blank %} menu_mobile_link_2{% endif %}{% if sale_item_lv2 contains childtitle %} active-sale{% endif %}"{% if childlink.current %} aria-current="page"{% endif %}>
                                                 <span class="text{% if childlink.current %} site-nav-active{% endif %}">{{ childlink.title | escape }}</span>
                                                 {%- if childlink.links != blank -%}
                                                     <span class="icon-dropdown" data-toggle-menu-mb="">{% render 'icon-caret-right' %}</span>

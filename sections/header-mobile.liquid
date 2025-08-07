@@ -10,7 +10,7 @@
     endif
 -%}
 
-<{% if section.settings.sticky_header_type != 'none' %}sticky-header-mobile data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-mobile{{sticky_header}}{{header_transparent}}" style="--bg-color: {% if section.settings.gradient != blank %}{{ section.settings.gradient }}{% else %}{{ section.settings.background }}{% endif %}; --p-top: {{ section.settings.padding_top }}px; --p-bottom: {{ section.settings.padding_bottom }}px; --color-transparent: {{section.settings.transparent_color}}; --color-border-transparent: {{section.settings.transparent_border_color}};">
+<{% if section.settings.sticky_header_type != 'none' %}sticky-header-mobile data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-mobile{{sticky_header}}{{header_transparent}}" style="--bg-color: {% if section.settings.gradient != blank %}{{ section.settings.gradient }}{% else %}{{ section.settings.background }}{% endif %}; --p-top: {{ section.settings.padding_top }}px; --p-bottom: {{ section.settings.padding_bottom }}px; --color-transparent: {{section.settings.transparent_color}};">
     <div class="container">
         <div class="header-mobile__wrapper header-mobile--wrapper">
             {%- for block in section.blocks -%}
@@ -471,11 +471,6 @@
             "id": "transparent_color",
             "label": "t:settings_schema.typography.settings.typography.text_color",
             "default": "#fff"
-        },
-        {
-            "type": "color",
-            "id": "transparent_border_color",
-            "label": "t:settings_schema.colors.settings.colors_name.border_color"
         },
         {
             "type": "header",

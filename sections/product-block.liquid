@@ -395,7 +395,7 @@
         .section-block-{{section.id}} .products-carousel .slick-arrow {visibility: hidden;opacity: 0}
     {%- endif -%}
     {%- if layout == 'slider' -%}
-        .section-block-{{section.id}} .halo-block-content .button-slider {max-width: {{ section.settings.button_width }}px;margin-left: auto;margin-right: auto;margin-top: {{ section.settings.btn_spacing_top }}px}
+        .section-block-{{section.id}} .halo-block-content .button-slider {max-width: {{ section.settings.button_width }}px;margin-left: auto;margin-right: auto;margin-top: {{ section.settings.btn_spacing_top }}px;border: none;}
         .section-block-{{section.id}} .products-carousel.display_product_outside_container .polite{
             overflow: unset;
         }
@@ -802,7 +802,7 @@
                         {%- endif -%}
                         {%- if layout == 'slider' -%}
                             {%- if section.settings.button_text_slider != blank -%}
-                                <a {% if section.settings.button_link_slider == blank %} role="link" aria-disabled="true"{% else %} href="{{ section.settings.button_link_slider }}" target="_blank" {% endif %} title="{{ section.settings.button_text_slider }}" class="button button--secondary button-slider">{{ section.settings.button_text_slider }}</a>
+                                <a {% if section.settings.button_link_slider == blank %} role="link" aria-disabled="true"{% else %} href="{{ section.settings.button_link_slider }}" target="_blank" {% endif %} title="{{ section.settings.button_text_slider }}" class="button button-slider">{{ section.settings.button_text_slider }}</a>
                             {%- endif -%}
                         {%- endif -%}
                     </div>

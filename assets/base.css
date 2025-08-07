@@ -1355,7 +1355,7 @@ option.soldout {
     }
 
     .haloCalculatorShipping .message{
-        font-size: var(--font-body-size);
+        font-size: calc(var(--font-body-size) - 2px);
         font-weight: var(--font-weight-normal);
         letter-spacing: 0;
         line-height: var(--body-line-height);
@@ -1385,8 +1385,8 @@ option.soldout {
     .cart-sidebar-show .haloCalculatorShipping .progress .progress-meter {
         text-align: center;
         animation: 2s linear 0s infinite progress-bar-stripes;
-        background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
-        background-size: 40px 40px;
+        background-image: linear-gradient(135deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+        background-size: 10px 10px;
         transition: .9s linear;
         transition-property: width,background-color;
         border-radius: var(--free-shipping-border-radius);
@@ -1825,7 +1825,7 @@ summary::-webkit-details-marker {
     }
 
     label{
-        font-size: var(--font-body-size);
+        font-size: calc(var(--font-body-size) - 2px);
         font-weight: var(--font-weight-medium);
         letter-spacing: var(--body-letter-spacing);
         line-height: var(--body-line-height);
@@ -2302,13 +2302,13 @@ summary::-webkit-details-marker {
         position: absolute;
         top: 0px;
         right: 0px;
-        min-width: 23px;
-        min-height: 23px;
+        min-width: 16px;
+        min-height: 16px;
         text-align: center;
         border-radius: 50%;
         font-size: var(--font-body-size);
         font-weight: var(--font-weight-normal);
-        line-height: 22px;
+        line-height: 16px;
         letter-spacing: var(--body-letter-spacing);
         background-color: var(--color-global);
         color: var(--color-white);
@@ -2337,7 +2337,7 @@ summary::-webkit-details-marker {
         text-transform: var(--page-title-text-transform);
         color: var(--color-text);
         position: relative;
-        padding: 37px 0 25px 0;
+        padding: 24px 0;
         margin: 0;
     }
     .breadcrumb-container +.page-header {
@@ -3865,7 +3865,7 @@ summary::-webkit-details-marker {
 
     .halo-sidebar-header .title{
         display: block;
-        font-size: calc(var(--font-body-size) + 4px);
+        font-size: calc(var(--font-body-size) + 2px);
         font-style: var(--font-heading-style);
         font-weight: var(--font-weight-semibold);
         letter-spacing: var(--body-letter-spacing);
@@ -5443,8 +5443,8 @@ summary::-webkit-details-marker {
         }
         .header__icon--cart .cart-count-bubble {
             position: absolute;
-            right: -12px;
-            top: -8px;
+            right: -7px;
+            top: -7px;
         }
         .search-modal__form {
             background-color: #fafafa;
@@ -6175,7 +6175,7 @@ summary::-webkit-details-marker {
             max-width: 370px;
         }
         .halo-sidebar.halo-cart-sidebar{
-            max-width: 420px;
+            max-width: 480px;
         }
     /* END: Sidebar */
 }

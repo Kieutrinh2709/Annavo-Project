@@ -96,10 +96,10 @@
 
 .footer-block__newsletter .footer-block__newsletter-form #NewsletterForm--footer,
 .footer-block__newsletter .footer-block__newsletter-form [id^="NewsletterForm--"] {
-    padding-top: var(--btn-1-padding-top);
-    padding-bottom: var(--btn-1-padding-bottom);
+    padding-top: calc(var(--btn-1-padding-top) - 1px);
+    padding-bottom: calc(var(--btn-1-padding-bottom) - 1px);
     border-radius: var(--btn-1-border-radius);
-    line-height: var(--btn-1-line-height);
+    line-height: calc(var(--btn-1-line-height) - 2px);
 }
 
 .footer-block__newsletter .footer-block__newsletter-form #NewsletterForm--footer {
@@ -236,10 +236,10 @@
     align-items: center;
 }
 
-.footer-block__details .rte .content-piece a {
+/* .footer-block__details .rte .content-piece a {
     text-decoration: underline;
     text-underline-offset: 4px;
-}
+} */
 
 .footer-block__details.has-content-piece .rte>p:last-of-type {
     margin-bottom: 13px;
