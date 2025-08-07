@@ -41,10 +41,10 @@
         "font_weight_text": "400",
         "arrow_active": false,
         "content_max_width": 38,
-        "padding_top": 14,
+        "padding_top": 13,
         "padding_top_tablet": 10,
         "padding_top_mobile": 10,
-        "padding_bottom": 14,
+        "padding_bottom": 13,
         "padding_bottom_tablet": 10,
         "padding_bottom_mobile": 10
       }
@@ -71,8 +71,8 @@
           "type": "main_menu",
           "settings": {
             "menu": "menu-custom-1",
-            "menu_top_spacing": 15,
-            "menu_bottom_spacing": 15,
+            "menu_top_spacing": 30,
+            "menu_bottom_spacing": 30,
             "grid_gap_menu_item": 20,
             "alignment": "center",
             "bg_mega_menu": "#ffffff",
@@ -112,19 +112,19 @@
         "sections--14706180259917__e0867a62-432c-43b8-941f-74ec7b537a71-168621382817cf2b6e-2": {
           "type": "header_icons",
           "settings": {
-            "icons_width": 22,
+            "icons_width": 24,
             "icons_layout": "icon",
             "icons_bold": "regular",
             "show_search": true,
             "search_icon": "3",
-            "search_dropdown": "custom",
+            "search_dropdown": "default",
             "use_search_input": false,
             "search_input_style": "1",
             "show_customer": true,
             "customer_icon": "3",
-            "text_font_size": 15,
+            "text_font_size": 12,
             "show_wishlist": true,
-            "show_wishlist_number": false,
+            "show_wishlist_number": true,
             "wishlist_icon": "1",
             "show_cart": true,
             "show_cart_number": true,
@@ -219,8 +219,8 @@
         "transparent_color": "#ffffff",
         "transparent_color_hover": "#ffffff",
         "border_color": "rgba(0,0,0,0)",
-        "padding_top": 15,
-        "padding_bottom": 15
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "header-mobile": {
@@ -286,7 +286,6 @@
         "sticky_header_type": "on_scroll",
         "enable_transparent": false,
         "transparent_color": "#ffffff",
-        "transparent_border_color": "",
         "padding_top": 0,
         "padding_bottom": 0
       }

@@ -353,13 +353,13 @@
                                     .slide-block-{{ block.id }} .slide-content .slide-button + .slide-button {margin-top: 10px}
                                 {%- endif -%}
                                 .slide-block-{{ block.id }} .slide-content .slide-button svg{fill: {{ block.settings.color_button }}}
-                                .slide-block-{{ block.id }} .slide-content .slide-button{min-width: {{ block.settings.min_width_banner_button | append: 'px' }}}
+                                .slide-block-{{ block.id }} .slide-content .slide-button{min-width: {{ block.settings.min_width_banner_button | append: 'px' }};font-size: {{ block.settings.font_size_link | append: 'px' }};line-height: 1;}
 
                                 {%- if block.settings.enable_button_link -%}
                                     .slide-block-{{ block.id }} .slide-content .slide-button{background: none; border: none; box-shadow: none; padding: 0;text-decoration: underline;text-underline-offset: 0.2em;min-width: 78px}
                                     .slide-block-{{ block.id }} .slide-content .slide-button:hover{background: none; border: none; box-shadow: none}
                                     {%- unless block.settings.enable_underline -%}
-                                        .slide-block-{{ block.id }} .slide-content .slide-button{text-decoration: none; font-size: {{ block.settings.font_size_link | append: 'px' }};line-height: 1;}
+                                        .slide-block-{{ block.id }} .slide-content .slide-button{text-decoration: none;}
                                     {%- endunless -%}
                                 {%- endif -%}
                                 .slide-block-{{ block.id }} .slide-content .slide-button { {% if block.settings.enable_button_link == false %}background:{% if block.settings.bg_button_gradient != blank %}{{ block.settings.bg_button_gradient }}{% else %}{{ block.settings.bg_button }}{% endif %};border-color:{{ block.settings.border_button }};{% endif %}color:{{ block.settings.color_button }}}
@@ -378,7 +378,7 @@
                                 .slide-block-{{ block.id }} .slide-content__person .profile-name-and-title .profile-name { {%- if block.settings.profile_name_color != 'rgba(0,0,0,0)' and block.settings.profile_name_color != blank -%}color: {{ block.settings.profile_name_color }};{%- endif -%}font-size: {{ block.settings.profile_name_fs | append: 'px' }};font-weight: {{ block.settings.profile_name_fw }}}
                                 .slide-block-{{ block.id }} .slide-content__person .profile-name-and-title .profile-title { {%- if block.settings.profile_title_color != 'rgba(0,0,0,0)' and block.settings.profile_title_color != blank -%}color: {{ block.settings.profile_title_color }};{%- endif -%} font-size: {{ block.settings.profile_title_fs | append: "px" }};font-weight: {{ block.settings.profile_title_fw }}}
                                 .slideshow {position: relative}
-                                .section-block-{{ section.id }} .slideshow .slick-dots {--spacing-sides: 70px;width: max-content;height: max-content;display: flex;gap: 15px;position: absolute;bottom: {{ section.settings.position_slick_dots }};
+                                .section-block-{{ section.id }} .slideshow .slick-dots {--spacing-sides: 70px;width: max-content;height: max-content;display: flex;gap: 12px;position: absolute;bottom: {{ section.settings.position_slick_dots }};
                                     {%- if section.settings.dots_direction == 'left' -%}
                                         left: var(--spacing-sides);flex-direction: column;
                                     {%- elsif section.settings.dots_direction == 'right' -%}
@@ -2173,7 +2173,6 @@
                         "type": "range",
                         "id": "font_size_link",
                         "label" : "t:sections.collection_lookbook.blocks.collection.link.link_fs",
-                        "info": "t:sections.slide-show.blocks.image.slider_layout.info__2",
                         "min": 10,
                         "max": 100,
                         "step": 1,
