@@ -22,7 +22,7 @@
         "page_title_alignment": "left",
         "enable_sticky_button_checkout_mb": false,
         "enable_dropdown": false,
-        "show_vendor": true,
+        "show_vendor": false,
         "image_ratio": "portrait",
         "portrait_aspect_ratio": 150,
         "show_cart_countdown": false,

@@ -1293,7 +1293,7 @@ option.soldout {
 
     .haloCalculatorShipping .progress{
         position: relative;
-        margin: 0 0 10px 0;
+        margin: 0 0 12px 0;
         font-size: 0;
         letter-spacing: 0;
     }
@@ -1358,7 +1358,7 @@ option.soldout {
         font-size: calc(var(--font-body-size) - 2px);
         font-weight: var(--font-weight-normal);
         letter-spacing: 0;
-        line-height: var(--body-line-height);
+        line-height: calc(var(--body-line-height) - 2px);
         color: var(--free-shipping-color);
         transition: color var(--duration-default) ease-in-out; 
     }
@@ -1908,11 +1908,11 @@ summary::-webkit-details-marker {
     input[type="checkbox"] + .form-label--checkbox:before{
         content: '';
         position: absolute;
-        top: 3px;
+        top: 1px;
         left: 0;
         border: 1px solid #dbdbdb;
-        width: 15px;
-        height: 15px;
+        width: 16px;
+        height: 16px;
         background-color: transparent;
         border-radius: 0;
     }
@@ -1921,7 +1921,7 @@ summary::-webkit-details-marker {
         content: '';
         display: block;
         position: absolute;
-        top: 5px;
+        top: 4px;
         left: 3px;
         width: 10px;
         height: 10px;
@@ -3859,7 +3859,7 @@ summary::-webkit-details-marker {
 
     .halo-sidebar-header{
         position: relative;
-        padding: 24px 20px 0px 20px;
+        padding: 32px 32px 0px 32px;
         background-color: #fff;
     }
 
@@ -6903,8 +6903,8 @@ summary::-webkit-details-marker {
 
     /* START: Sidebar */
         .halo-sidebar-header{
-            padding-left: 30px;
-            padding-right: 30px;
+            padding-left: 32px;
+            padding-right: 32px;
         }
     /* END: Sidebar */
 
@@ -7090,7 +7090,7 @@ summary::-webkit-details-marker {
 
     /* START: Calculator Free Shipping Message */
         .haloCalculatorShipping{
-            padding: 0 30px;
+            padding: 0 32px;
         }
     /* END: Calculator Free Shipping Message */
 
