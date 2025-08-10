@@ -999,7 +999,8 @@
 		float: right;
 	}
 
-	body.layout_rtl.open-mobile-sidebar .page-sidebar {
+	body.layout_rtl.open-mobile-sidebar .page-sidebar,
+	body.layout_rtl.open-mobile-sidebar-categories .page-sidebar {
 		transform: translateZ(0);
 	}
 

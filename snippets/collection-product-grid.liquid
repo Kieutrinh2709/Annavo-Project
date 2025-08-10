@@ -48,6 +48,14 @@
         assign show_sorting = section.settings.show_sorting
         assign show_item_per_page = section.settings.show_item_per_page
         assign show_view_as = section.settings.show_view_as
+        assign show_breadcrumb = section.settings.show_breadcrumb
+        assign breadcrumb_alignment = section.settings.breadcrumb_alignment
+        assign breadcrumb_color = section.settings.breadcrumb_color 
+        assign breadcrumb_color_mb = section.settings.breadcrumb_color_mb
+        assign breadcrumb_bg = section.settings.breadcrumb_bg 
+        assign breadcrumb_gradient = section.settings.breadcrumb_gradient 
+        assign breadcrumb_bg_mb = section.settings.breadcrumb_bg_mb 
+        assign breadcrumb_gradient_mb = section.settings.breadcrumb_gradient_mb
     endif
     assign show_infinite_scrolling = section.settings.show_infinite_scrolling
     assign product_space_between_vert_desk = section.settings.product_space_between_vert_desk
@@ -112,28 +120,6 @@
         <div class="{% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
     {%- endif -%}
         <div class="halo-collection-content halo-grid-content sidebar--layout_{{ sidebar_type }}">
-            {%- if has_sidebar -%}
-                {{ 'component-main-sidebar.css' | asset_url | stylesheet_tag }}
-                <div class="page-sidebar page-sidebar-{{ sidebar_position }} page-sidebar--{{ sidebar_type }} sidebar--{{ sidebar_layout }}{% if enable_sticky %} has-sticky{% endif %}" id="halo-sidebar">
-                    <button type="button" class="halo-sidebar-close" data-close-sidebar role="button"><span class="visually-hidden">{{ 'general.common.close' | t }}</span>{% render 'icon-close' %}</button>
-                    <div class="halo-sidebar-header text-left{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"><span class="title">{{ 'sections.sidebar.title' | t }}</span></div>
-                    <div class="halo-sidebar-wrapper custom-scrollbar{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-                        {% render 'collection-sidebar',
-                            results: collection,
-                            section: section,
-                            sort_by: sort_by,
-                            sidebar_type: sidebar_type,
-                            show_filter: show_filter,
-                            show_sorting: show_sorting,
-                            show_collapse: sidebar_collapse,
-                            sidebar_collapse: sidebar_collapse_default,
-                            filter_swatch: filter_swatch,
-                            filter_swatch_type: filter_swatch_type,
-                            filter_rectangle: filter_rectangle
-                        %}
-                    </div>
-                </div>
-            {%- endif -%}
             <div class="page-content" id="CollectionProductGrid">
                 {%- if settings.layout == '4' and sidebar_type == 'horizontal' -%}
                     <div class="{% if container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% elsif container == 'fullwidth'%}container-full{% else %}container{% endif %}">
@@ -185,18 +171,49 @@
                 {%- endfor -%}
 
                 {%- paginate collection.products by products_per_page -%}
-                    {%- if show_toolbar -%}
-                        {% render 'toolbar',
-                            has_sidebar: has_sidebar,
-                            show_sorting: show_sorting,
-                            show_item_per_page: show_item_per_page,
-                            show_view_as: show_view_as,
-                            products_per_page: products_per_page,
-                            layout: layout,
-                            sort_by: sort_by,
-                            sort_options: sort_options
-                        %}
-                    {%- endif -%}
+                    <div class="toolbar-filter">
+                        {%- if show_breadcrumb -%}
+                            <div class="collection-breadcrumb text-{{ breadcrumb_alignment }}" style="--breadcrumb-color-mb: {{ breadcrumb_color_mb }}; --breadcrumb-color: {{ breadcrumb_color }};--breadcrumb-bg: {% if breadcrumb_gradient != blank and breadcrumb_gradient != 'rgba(0,0,0,0)' %}{{ breadcrumb_gradient }}{% elsif breadcrumb_bg != blank and breadcrumb_bg != 'rgba(0,0,0,0)' %}{{ breadcrumb_bg }}{% endif %};--breadcrumb-bg-mb: {% if breadcrumb_gradient_mb != blank and breadcrumb_gradient_mb != 'rgba(0,0,0,0)' %}{{ breadcrumb_gradient_mb }}{% elsif breadcrumb_bg_mb != blank and breadcrumb_bg_mb != 'rgba(0,0,0,0)' %}{{ breadcrumb_bg_mb }}{% endif %}">
+                                {% render 'breadcrumb' %}
+                            </div>
+                        {%- endif -%}
+                        <div class="toolbar-filter-sort">
+                            {%- if has_sidebar -%}
+                                {{ 'component-main-sidebar.css' | asset_url | stylesheet_tag }}
+                                <div class="page-sidebar page-sidebar-{{ sidebar_position }} page-sidebar--{{ sidebar_type }} sidebar--{{ sidebar_layout }}{% if enable_sticky %} has-sticky{% endif %}" id="halo-sidebar">
+                                    <button type="button" class="halo-sidebar-close" data-close-sidebar role="button"><span class="visually-hidden">{{ 'general.common.close' | t }}</span>{% render 'icon-close' %}</button>
+                                    <div class="halo-sidebar-header text-left{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"><span class="title">{{ 'sections.sidebar.title' | t }}</span></div>
+                                    <div class="halo-sidebar-wrapper custom-scrollbar{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+                                        {% render 'collection-sidebar',
+                                            results: collection,
+                                            section: section,
+                                            sort_by: sort_by,
+                                            sidebar_type: sidebar_type,
+                                            show_filter: show_filter,
+                                            show_sorting: show_sorting,
+                                            show_collapse: sidebar_collapse,
+                                            sidebar_collapse: sidebar_collapse_default,
+                                            filter_swatch: filter_swatch,
+                                            filter_swatch_type: filter_swatch_type,
+                                            filter_rectangle: filter_rectangle
+                                        %}
+                                    </div>
+                                </div>
+                            {%- endif -%}
+                            {%- if show_toolbar -%}
+                                {% render 'toolbar',                            
+                                    has_sidebar: has_sidebar,
+                                    show_sorting: show_sorting,
+                                    show_item_per_page: show_item_per_page,
+                                    show_view_as: show_view_as,
+                                    products_per_page: products_per_page,
+                                    layout: layout,
+                                    sort_by: sort_by,
+                                    sort_options: sort_options
+                                %}
+                            {%- endif -%}
+                        </div>
+                    </div>
                     {%- if collection.products.size == 0 -%}
                         <div class="collection collection--empty{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" id="main-collection-product-grid" data-id="{{ section.id }}">
                             <p class="collection-product-count ">{{ 'sections.collection_template.product_count' | t: count: collection.products_count, total: collection.all_products_count }}</p>

@@ -3578,6 +3578,12 @@
         "default": false
       },
       {
+        "type": "checkbox",
+        "id": "enable_custom_variant_popup",
+        "label": "t:sections.header.settings.product_card_layout.enable_variant_popup",
+        "default": false
+      },
+      {
         "type": "paragraph",
         "content": "t:sections.header.settings.product_card_layout.label__2"
       },

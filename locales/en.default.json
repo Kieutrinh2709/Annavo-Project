@@ -294,6 +294,7 @@
       "custom": "Custom label",
       "new": "New",
       "bundle": "Bundle",
+      "available": "Available",
       "unavailable": "Unavailable",
       "unavailable_message": "This variant is unavailable!",
       "value_unavailable": "{{ option_value }} (unavailable)",
@@ -521,6 +522,7 @@
       "filter_and_sort": "Filter and sort",
       "filter_by_label": "Filter by",
       "filter_button": "Filter",
+      "categories_button": "Categories",
       "filters_selected": "{{ count }} selected",
       "product_count_simple": {
         "one": "{{ count }} product",

@@ -13,7 +13,7 @@
 }
 
 .price dd {
-    margin: 0 8px 0 0;
+    margin: 0 4px 0 0;
 }
 
 .style-arrows-7 .price dd {
@@ -189,4 +189,12 @@
     font-size: calc(var(--product-price-font-size) - 2px);
     line-height: normal;
     vertical-align: unset;
+}
+
+/* custom price */
+.card-price .price--on-sale .price-item--regular{
+    font-weight: var(--font-weight-normal);
+}
+.template-collection .card-price .price--on-sale .price-item--sale{
+    font-size: calc(var(--product-price-font-size) + 2px);
 }

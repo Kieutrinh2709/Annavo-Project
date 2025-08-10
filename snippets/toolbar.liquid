@@ -2,8 +2,13 @@
 <toolbar-item class="toolbar" data-toolbar data-id="{{ section.id }}">
     {%- if has_sidebar -%}
         <div class="toolbar-wrapper toolbar-mobile{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
+            <div class="toolbar-item toolbar-sidebar" data-sidebar-categories>
+                <span class="toolbar-icon icon-filter"><span class='filter-text text'>{{ 'sections.collection_template.categories_button' | t }}{% render 'icon-down' %}</span></span>
+            </div>
+        </div>
+        <div class="toolbar-wrapper toolbar-mobile{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
             <div class="toolbar-item toolbar-sidebar" data-sidebar>
-                <span class="toolbar-icon icon-filter">{% render 'icon-sidebar' %} <span class='filter-text text'>{{ 'sections.collection_template.filter_button' | t }}</span></span>
+                <span class="toolbar-icon icon-filter"><span class='filter-text text'>{{ 'sections.collection_template.filter_button' | t }}{% render 'icon-down' %}</span></span>
             </div>
         </div>
     {%- endif -%}
@@ -50,7 +55,7 @@
                 {%- endif -%}
                 {%- if show_sorting -%}
                     <div class="toolbar-item toolbar-sort clearfix" data-sorting>
-                        <label class="toolbar-label" data-ur>{{ 'sections.collection_template.sort_by_label' | t }}</label>
+                        <label class="toolbar-label" data-ur>{{ 'sections.collection_template.sort_by_label' | t }}:</label>
                         <div class="toolbar-dropdown filter-sortby">
                             <div class="label-tab hidden-on-mobile" data-toggle="dropdown" aria-expanded="false" role="button" tabindex="0">
                                 {%- for option in sort_options -%}

@@ -3160,6 +3160,7 @@
           "enable_background_button_card": "Enable background for button",
           "disable_product_card_border": "Disable border",
           "enable_custom_layout_card": "Enable custom layout",
+          "enable_variant_popup": "Enable Variant Popup",
           "enable_infor_on_image": "Enable product information on image",
           "enable_custom_position_swatch_layout_card": "Enable custom swatch position",
           "enable_countdown_layout_card": "Enable countdown",

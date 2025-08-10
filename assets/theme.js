@@ -99,6 +99,7 @@
             this.typingAnimation();
             this.spotlightproductSlider();
             this.doBeforeMegaMenuProductBlock();
+            this.changeVariantQuickView();
 
             if ($('.lookbook-carousel').length) {
                 this.lookbookCarousel();
@@ -161,6 +162,7 @@
                 this.initCollapseSidebarBlock();
                 this.initCategoryActive();
                 this.toggleSidebarMobile();
+                this.toggleSidebarCategoriesMobile();
                 this.productBlockSilderSidebar();
                 this.initInfiniteScrolling();
                 this.initQuickShopProductList();
@@ -3032,6 +3034,170 @@
                     }
                 }
             }
+        },
+        changeVariantQuickView: function () {
+            $doc.on('change', '[data-quickview] .single-option', (event) => {   
+                var $target = $(event.target),
+                    product = $target.parents('.product-item'),
+                    productJson = product.data('json-product'),
+                    variantList,
+                    optionColor = product.find('.option-color').data('option-position'),
+                    optionIndex = $target.closest('[data-option-index]').data('option-index'),
+                    swatch = product.find('.swatch-element'),
+                    thisVal = $target.val(),
+                    selectedVariant,
+                    productInput = product.find('[name=id]');
+
+                if ($('.productListing').hasClass('productList')) {
+                    var selectedOption1 = product.find('.card-information .selector-wrapper-1').find('input:checked').val(),
+                        selectedOption2 = product.find('.card-information .selector-wrapper-2').find('input:checked').val(),
+                        selectedOption3 = product.find('.card-information .selector-wrapper-3').find('input:checked').val();
+                }
+                else {
+                    var selectedOption1 = product.find('.selector-wrapper-1').find('input:checked').val(),
+                        selectedOption2 = product.find('.selector-wrapper-2').find('input:checked').val(),
+                        selectedOption3 = product.find('.selector-wrapper-3').find('input:checked').val();
+                }
+             
+                if ($body.hasClass('quick_shop_option_2') && $('.productListing').hasClass('productList')) {
+                    selectedOption1 = product.find('.selector-wrapper-1').eq('1').find('input:checked').val();
+                } else {
+                    if ($('.productListing').hasClass('prod1uctList') && $win.width() < 767) {
+                        selectedOption1 = product.find('.selector-wrapper-1').eq('1').find('input:checked').val();
+                        selectedOption2 = product.find('[data-option-index="1"]').eq('1').find('input:checked').val();
+                    } else {
+                        selectedOption1 = product.find('.selector-wrapper-1').eq('0').find('input:checked').val();
+                    }
+                }
+
+                if (productJson != undefined) {
+                    variantList = productJson.variants;
+                }
+
+                swatch.removeClass('soldout');
+                swatch.find('input[type="radio"]').prop('disabled', false);
+
+                switch (optionIndex) {
+                    case 0:
+                        var availableVariants = variantList.find((variant) => {
+                            if (optionColor == 1) {
+                                if (selectedOption3 != undefined) {
+                                    return variant.option2 == thisVal && variant.option1 == selectedOption2 && variant.option3 == selectedOption3;
+                                }
+                                else {
+                                    return variant.option2 == thisVal && variant.option1 == selectedOption2;
+                                }
+                            } else {
+                                if (optionColor == 2) {
+                                    return variant.option3 == thisVal && variant.option1 == selectedOption2;
+                                } else {
+                                    return variant.option1 == thisVal && variant.option2 == selectedOption2;
+                                }
+                            }
+                        });
+                        
+                        if(availableVariants != undefined){
+                            selectedVariant =  availableVariants;
+                        } else{
+                            var altAvailableVariants = variantList.find((variant) => {
+                                if (optionColor == 1) {
+                                    return variant.option2 == thisVal;
+                                } else {
+                                    if (optionColor == 2) {
+                                        return variant.option3 == thisVal;
+                                    } else {
+                                        return variant.option1 == thisVal;
+                                    }
+                                }
+                            });
+                            
+                            
+                            selectedVariant =  altAvailableVariants;
+                        }
+                        
+                        break;
+                    case 1:
+                        var availableVariants = variantList.find((variant) => {
+                            if (optionColor == 1) {
+                                return variant.option2 == selectedOption1 && variant.option1 == thisVal && variant.option3 == selectedOption2;
+                            } else {
+                                if (optionColor == 2) {                         
+                                    return variant.option3 == selectedOption1 && variant.option1 == thisVal && variant.option2 == selectedOption2;
+                                } else {                                 
+                                    return variant.option1 == selectedOption1 && variant.option2 == thisVal && variant.option3 == selectedOption2;
+                                }
+                            }
+                        });                          
+                                     
+                        if(availableVariants != undefined){
+                            selectedVariant =  availableVariants;
+                        } else {
+                            var altAvailableVariants = variantList.find((variant) => {
+                                if (optionColor == 1) {
+                                    return variant.option2 == selectedOption1 && variant.option1 == thisVal;
+                                } else {
+                                    if (optionColor == 2) {
+                                        return variant.option3 == selectedOption1 && variant.option1 == thisVal;
+                                    } else {
+                                        return variant.option1 == selectedOption1 && variant.option2 == thisVal;
+                                    }
+                                }
+                            });
+                            selectedVariant =  altAvailableVariants;
+                        }
+                    
+                        break;
+                    case 2:
+                        var availableVariants = variantList.find((variant) => {
+                            if (optionColor == 1) {
+                                return variant.option2 == selectedOption1 && variant.option1 == selectedOption2 && variant.option3 == thisVal;
+                            } else {
+                                if (optionColor == 2) {
+                                    return variant.option3 == selectedOption1 && variant.option1 == selectedOption2 && variant.option2 == thisVal;
+                                } else {
+                                    return variant.option1 == selectedOption1 && variant.option2 == selectedOption2 && variant.option3 == thisVal;
+                                }
+                            }
+                        });                 
+                        if(availableVariants != undefined){
+                            selectedVariant =  availableVariants;
+                        }
+
+                        break;
+                }
+                            
+                if (selectedVariant == undefined) {
+                    return;
+                }
+                
+                if(selectedVariant.available == false){
+                    $target.parents('.variants-quick-view-content').find('.product-card__button').text("Soldout");                                
+                } else {                 
+                    $target.parents('.variants-quick-view-content').find('.product-card__button').text("Available");
+                }
+                
+                
+                productInput.val(selectedVariant.id);
+                var value = $target.val();
+                             
+                $target.parents('.selector-wrapper').find('.form-label span').text(value);
+                if (selectedVariant.available) {
+                    product.find('[data-btn-addtocart]').removeClass('btn-unavailable');
+                    product.find('[data-quickshop] quickshop-update-quantity').removeClass('disabled');
+                    product.find('[data-btn-addtocart]').attr('data-available', 'true')
+                      
+                } else {
+                    product.find('[data-btn-addtocart]').addClass('btn-unavailable');
+                    product.find('[data-quickshop] quickshop-update-quantity').addClass('disabled');
+                    product.find('[data-btn-addtocart]').attr('data-available', 'false')
+                }
+
+                if (halo.checkNeedToConvertCurrency()) {
+                    Currency.convertAll(window.shop_currency, $('#currencies .active').attr('data-currency'), 'span.money', 'money_format');
+                };
+                halo.checkStatusSwatchQuickShop(product, productJson);
+
+            });
         },
         
         initAddToCartQuickShop: function($target, popup){
@@ -6244,6 +6410,31 @@
                 if($body.hasClass('open-mobile-sidebar')){
                     if (($(event.target).closest('[data-sidebar]').length === 0) && ($(event.target).closest('#halo-sidebar').length === 0)) {
                         $body.removeClass('open-mobile-sidebar');
+                    }
+                }
+            });
+        },
+
+        toggleSidebarCategoriesMobile: function() {
+            $doc.on('click', '[data-sidebar-categories]', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+
+                $body.addClass('open-mobile-sidebar-categories');
+              
+            });
+
+            $doc.on('click', '[data-close-sidebar]', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+
+                $body.removeClass('open-mobile-sidebar-categories');
+            });
+
+            $doc.on('click', (event) => {
+                if($body.hasClass('open-mobile-sidebar-categories')){
+                    if (($(event.target).closest('[data-sidebar-categories]').length === 0) && ($(event.target).closest('#halo-sidebar').length === 0)) {
+                        $body.removeClass('open-mobile-sidebar-categories');
                     }
                 }
             });

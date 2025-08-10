@@ -19,15 +19,15 @@
                 <span>{{ product.title | split: '|' | first }}</span>
             {%- elsif template contains 'collection' and collection.handle -%}
                 {%- if current_tags -%}
-                    <span class="separate" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path></svg></span>
+                    <span class="separate" aria-hidden="true">/</span>
                     <span class="bd-title" style="display: flex;">
                         <span>{{ collection.title | split: '|' | first | link_to: collection.url }}</span>
-                        <span class="separate" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path></svg></span>
+                        <span class="separate" aria-hidden="true">/</span>
                         {% assign bd_tags = current_tags | join: " + " %}
                         <span>{{ bd_tags | split: '|' | first }}</span>
                     </span>
                 {%- else -%}
-                    <span class="separate" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path></svg></span>
+                    <span class="separate" aria-hidden="true">/</span>
                     <span class="bd-title"><span>{{ collection.title | split: '|' | first | link_to: collection.url }}</span></span>
                 {%- endif -%}
             {%- elsif template == 'cart' -%}

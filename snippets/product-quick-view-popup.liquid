@@ -1,9 +1,6 @@
 {%- liquid
     assign variantCount = product.variants | size
     assign swatch_type = settings.swatch_type
-    assign colorList = ''
-    assign color = ''
-    assign count = 0
 -%}
 {%- if variantCount > 0  and product.has_only_default_variant != true -%}
     <script>window.quick_view_inven_array_{{ product.id }} = {
@@ -12,7 +9,10 @@
             {%- endfor -%}
         };</script>
 {%- endif -%}
-<div class="variants-quick-view-content text-center">
+<div class="variants-quick-view-content text-center" data-quickview>
+        <div class="product-card__button {{ settings.swatch }}">
+            <span>{{ 'products.product.available' | t }}</span>
+        </div>
         {%- assign product_swatch_option = settings.swatch | downcase -%}
         {%- for option in product.options_with_values -%}
             {%- assign option_name = option.name | downcase -%}
