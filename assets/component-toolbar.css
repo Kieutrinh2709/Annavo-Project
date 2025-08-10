@@ -13,9 +13,6 @@
 .collection-masonry .sidebar--layout_vertical .page-sidebar--vertical {
     margin-top: 10px;
 }
-.toolbar-filter{
-    padding: 10px 0 30px;
-}
 .toolbar {
     display: flex;
     align-items: center;

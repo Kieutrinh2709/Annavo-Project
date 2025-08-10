@@ -123,6 +123,9 @@
     .card-product__group.group-variant{
         display: none !important;
     }
+    .toolbar-filter{
+        padding: 0 0 20px;
+    }
 }
 
 /* custom quickshop */
@@ -171,6 +174,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        padding: 10px 0 30px;
     }
     .collection-info-item .collection-description h2{
         font-size: 70px;

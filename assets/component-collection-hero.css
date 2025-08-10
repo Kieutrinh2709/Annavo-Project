@@ -10,6 +10,7 @@
 
 .collection-banner {
     position: relative;
+    max-height: 800px;
 }
 
 .collection-banner .image {
@@ -216,7 +217,7 @@
 }
 
 .collection-breadcrumb .breadcrumb {
-    margin-bottom: 15px;
+    padding: 10px 0;
 }
 
 .collection-breadcrumb.text-center .breadcrumb {
@@ -757,7 +758,9 @@
     .collection-content-2 .collection-title {
         padding-top: 0;
     }
-
+    .collection-info--absolute .collection-description{
+        font-size: calc(var(--font-body-size) + 6px);
+    }
     /* START: Breadcrumb */
     .collection-breadcrumb .breadcrumb-container {
         position: relative;
