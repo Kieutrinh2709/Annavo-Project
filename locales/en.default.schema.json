@@ -3734,6 +3734,7 @@
         "label__1": "Show trust images",
         "label__2": "'Continue shopping' button: redirect",
         "label__3": "'Continue shopping' button: link",
+        "label__4": "Show trust text",
         "option__1": "Input link for button",
         "option__2": "Go back to previous page",
         "enabled_sticky_button": "Enable sticky checkout button on mobile",

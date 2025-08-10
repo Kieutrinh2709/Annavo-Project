@@ -473,6 +473,10 @@ breadcrumb-component {
     .container-1170 > .breadcrumb-with-sidebar  {
         margin-left: -10px;
     }
+
+    .template-cart .container-1170 > .breadcrumb-container.style--line_clamp_1 .breadcrumb {
+        margin-left: 0;
+    }
 }
     
 @media screen and (max-width: 1024px) and (min-width: 992px) {

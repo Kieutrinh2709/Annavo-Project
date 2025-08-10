@@ -65,7 +65,7 @@
                                     </span>
                                     {%- if settings.show_quick_edit_cart -%}
                                         <button type="button" class="previewCartItem-edit" data-open-edit-cart data-edit-cart-url="{{ item.url }}&view=ajax_edit_cart" data-edit-cart-id="{{ item.id }}" data-edit-cart-quantity="{{ item.quantity }}" data-line="{{ item.key }}" data-index="{{ item.index | plus: 1 }}" title="{{ 'sections.cart.edit_title' | t: title: item.variant.title }}">
-                                            {% render 'icon-edit' %}
+                                            {% render 'icon-edit-2' %}
                                         </button>
                                     {%- endif -%}
                                 </div>
@@ -378,7 +378,8 @@
                 <div class="previewCartTotals-value" data-cart-subtotal>
                     {{ cart.original_total_price | money }}
                 </div>  
-            </li>       
+            </li>
+            {%  comment  %}  
             <li class="previewCartTotals cart-total-savings" {% if cart.total_discount == 0 %}style="display: none;"{% endif %} data-saved-discount-display>
                 <div class="previewCartTotals-label">
                     <span class="text">{{ 'general.cart.are_saving' | t }}</span>
@@ -412,6 +413,7 @@
                     </div>
                 </li>  
             {% endif %}
+            {% endcomment %}
         </ul>
         <div class="previewCartAction text-left">
             {%- if settings.show_global_checkbox -%}

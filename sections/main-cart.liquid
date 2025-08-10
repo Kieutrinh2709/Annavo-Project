@@ -30,6 +30,7 @@
     assign show_gift_card = settings.show_cart_gift
     assign continue_button_action = section.settings.continue_button_action
     assign custom_button_link = section.settings.custom_button_link
+    assign show_trust_text = section.settings.show_trust_text
     assign show_trust_image = section.settings.show_trust_image
     assign cart_countdown_product = section.settings.cart_countdown_product
     assign cart_countdown_text_empty_1 = section.settings.cart_countdown_text_empty_1
@@ -148,7 +149,7 @@
                                                             {%- unless item.variant.title contains 'Default' -%}
                                                                 <div class="cart-item-option">
                                                                     <span class="cart-item-variant">{{ item.variant.title }}</span>
-                                                                    <a href="javascript:void(0);" class="cart-item-edit" data-open-edit-cart data-edit-cart-url="{{ item.url }}&view=ajax_edit_cart" data-edit-cart-id="{{ item.id }}" data-edit-cart-quantity="{{ item.quantity }}" data-line="{{ item.key }}" data-index="{{ item.index | plus: 1 }}" aria-label="{{ 'sections.cart.edit_title' | t: title: item.variant.title }}">{% render 'icon-edit' %}</a>
+                                                                    <a href="javascript:void(0);" class="cart-item-edit" data-open-edit-cart data-edit-cart-url="{{ item.url }}&view=ajax_edit_cart" data-edit-cart-id="{{ item.id }}" data-edit-cart-quantity="{{ item.quantity }}" data-line="{{ item.key }}" data-index="{{ item.index | plus: 1 }}" aria-label="{{ 'sections.cart.edit_title' | t: title: item.variant.title }}">{% render 'icon-edit-2' %}</a>
                                                                 </div>
                                                             {%- endunless -%}
                                                         {%- endif -%}
@@ -272,7 +273,7 @@
                                                                                 type="button"
                                                                                 aria-label="{{ 'accessibility.close' | t }}"
                                                                               >
-                                                                                {%- render 'icon-close' -%}
+                                                                                {%- render 'icon-close-bin' -%}
                                                                               </button>
                                                                               {%- if item.variant.quantity_price_breaks.size > 0 -%}
                                                                                 <volume-pricing class="parent-display">
@@ -309,7 +310,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="cart-item-block cart-item-remove small-screen-visible">
-                                                                <a class="cart-remove" href="javascript:void(0)" data-cart-remove data-cart-remove-id="{{ item.id }}" data-line="{{ item.key }}" data-index="{{ item.index | plus: 1 }}" aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}">{% render 'icon-close' %}</a>
+                                                                <a class="cart-remove" href="javascript:void(0)" data-cart-remove data-cart-remove-id="{{ item.id }}" data-line="{{ item.key }}" data-index="{{ item.index | plus: 1 }}" aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}">{% render 'icon-close-bin' %}</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -400,7 +401,7 @@
                                                             type="button"
                                                             aria-label="{{ 'accessibility.close' | t }}"
                                                           >
-                                                            {%- render 'icon-close' -%}
+                                                            {%- render 'icon-close-bin' -%}
                                                           </button>
                                                           {%- if item.variant.quantity_price_breaks.size > 0 -%}
                                                             <volume-pricing class="parent-display">
@@ -446,7 +447,7 @@
                                                 <span class="cart-item-value" data-item-price-with-quantity-display>{{ price_to_display | times: item.quantity | money }}</span>
                                             </div>
                                             <div class="cart-item-block cart-item-remove">
-                                                <a class="cart-remove" href="javascript:void(0)" data-cart-remove data-cart-remove-id="{{ item.id }}" data-line="{{ item.key }}" data-index="{{ item.index | plus: 1 }}" aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}">{% render 'icon-close' %}</a>
+                                                <a class="cart-remove" href="javascript:void(0)" data-cart-remove data-cart-remove-id="{{ item.id }}" data-line="{{ item.key }}" data-index="{{ item.index | plus: 1 }}" aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}">{% render 'icon-close-bin' %}</a>
                                             </div>
                                         </div>
                                     {%- endfor -%}
@@ -467,10 +468,14 @@
                                     <a class="button button-1" style="display: none" data-update-note>{{ 'general.cart.save' | t }}</a>
                                 </div>
                             {%- endif -%}
-                            {%- if show_trust_image -%}
+                            {%- if show_trust_image or show_trust_text -%}
                                 <div class="cart-securityImage">
-                                    <span class="cart-securityImage-label">{%- render 'icon-shield-check' -%} {{ 'general.cart.secure_text' | t }}</span>
-                                    {%- render 'halo-trust-image', type: 'cart'-%}
+                                    {%- if show_trust_text -%}
+                                        <span class="cart-securityImage-label">{%- render 'icon-shield-check' -%} {{ 'general.cart.secure_text' | t }}</span>
+                                    {%- endif -%}
+                                    {%- if show_trust_image -%}
+                                        {%- render 'halo-trust-image', type: 'cart'-%}
+                                    {%- endif -%}
                                 </div>
                             {%- endif -%}
                         </div>
@@ -548,9 +553,6 @@
                                         <div class="cart-total-label"><span class="text">{{ 'general.cart.total' | t }}</span></div>  
                                         <div class="cart-total-value" data-cart-total-value="{{ cart.total_price }}"><span class="text">{{ cart.total_price | money }}</span></div>  
                                     </li>
-                                    {%- if settings.show_shipping_note -%}
-                                        <li class="shipTotal"><p class="cart-total-value form-text">{{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}</p></li>  
-                                    {%- endif -%}
                                 </ul>
                                 
                                 {%- if section.settings.enable_sticky_button_checkout_mb -%}
@@ -848,6 +850,12 @@
         {
             "type": "header",
             "content": "t:sections.main_cart.settings.header__2"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_trust_text",
+            "label": "t:sections.main_cart.settings.label__4",
+            "default": true
         },
         {
             "type": "checkbox",
